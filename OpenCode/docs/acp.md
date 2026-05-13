@@ -1,82 +1,15 @@
- [Skip to content](#_top)
+Title: ACP Support
 
-[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
+URL Source: https://opencode.ai/docs/acp
 
-[app.header.home](/)[app.header.docs](../docs.md)
+Markdown Content:
+---
+title: ACP Support
+description: Use OpenCode in any ACP-compatible editor.
+image: https://social-cards.sst.dev/opencode-docs/QUNQJTIwU3VwcG9ydA%3D%3D.png?desc=Use%20OpenCode%20in%20any%20ACP-compatible%20editor.
+---
 
-Search  `CtrlK`   
-
-Cancel
-
-       
-
-- [Intro](../docs.md)
-- [Config](config.md)
-- [Providers](providers.md)
-- [Network](network.md)
-- [Enterprise](enterprise.md)
-- [Troubleshooting](troubleshooting.md)
-- [Windows](windows-wsl.md)
-- Usage
-
-   
-  - [Go](go.md)
-  - [TUI](tui.md)
-  - [CLI](cli.md)
-  - [Web](web.md)
-  - [IDE](ide.md)
-  - [Zen](zen.md)
-  - [Share](share.md)
-  - [GitHub](github.md)
-  - [GitLab](gitlab.md)
-- Configure
-
-   
-  - [Tools](tools.md)
-  - [Rules](rules.md)
-  - [Agents](agents.md)
-  - [Models](models.md)
-  - [Themes](themes.md)
-  - [Keybinds](keybinds.md)
-  - [Commands](commands.md)
-  - [Formatters](formatters.md)
-  - [Permissions](permissions.md)
-  - [LSP Servers](lsp.md)
-  - [MCP servers](mcp-servers.md)
-  - [ACP Support](acp.md)
-  - [Agent Skills](skills.md)
-  - [Custom Tools](custom-tools.md)
-- Develop
-
-   
-  - [SDK](sdk.md)
-  - [Server](server.md)
-  - [Plugins](plugins.md)
-  - [Ecosystem](ecosystem.md)
-
-[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
-
-  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
-
-On this page
-
-- [Overview](#_top)
-- [Configure](#configure) 
-  - [Zed](#zed)
-  - [JetBrains IDEs](#jetbrains-ides)
-  - [Avante.nvim](#avantenvim)
-  - [CodeCompanion.nvim](#codecompanionnvim)
-- [Support](#support)
-
-## On this page
-
-- [Overview](#_top)
-- [Configure](#configure) 
-  - [Zed](#zed)
-  - [JetBrains IDEs](#jetbrains-ides)
-  - [Avante.nvim](#avantenvim)
-  - [CodeCompanion.nvim](#codecompanionnvim)
-- [Support](#support)
+[Skip to content](#%5Ftop) 
 
 # ACP Support
 
@@ -106,38 +39,27 @@ Below are examples for popular editors that support ACP.
 
 Add to your [Zed](https://zed.dev) configuration (`~/.config/zed/settings.json`):
 
-~/.config/zed/settings.json
+\~/.config/zed/settings.json
 
 ```
+
 {
 
+  "agent_servers": {
 
+    "OpenCode": {
 
-"agent_servers": {
+      "command": "opencode",
 
+      "args": ["acp"]
 
+    }
 
-"OpenCode": {
-
-
-
-"command": "opencode",
-
-
-
-"args": ["acp"]
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
 ```
 
 To open it, use the `agent: new thread` action in the **Command Palette**.
@@ -147,83 +69,48 @@ You can also bind a keyboard shortcut by editing your `keymap.json`:
 keymap.json
 
 ```
+
 [
 
+  {
 
+    "bindings": {
 
-{
+      "cmd-alt-o": [
 
+        "agent::NewExternalAgentThread",
 
+        {
 
-"bindings": {
+          "agent": {
 
+            "custom": {
 
+              "name": "OpenCode",
 
-"cmd-alt-o": [
+              "command": {
 
+                "command": "opencode",
 
+                "args": ["acp"]
 
-"agent::NewExternalAgentThread",
+              }
 
+            }
 
+          }
 
-{
+        }
 
+      ]
 
+    }
 
-"agent": {
-
-
-
-"custom": {
-
-
-
-"name": "OpenCode",
-
-
-
-"command": {
-
-
-
-"command": "opencode",
-
-
-
-"args": ["acp"]
-
-
-
-}
-
-
-
-}
-
-
-
-}
-
-
-
-}
-
-
+  }
 
 ]
 
 
-
-}
-
-
-
-}
-
-
-
-]
 ```
 
 ---
@@ -235,38 +122,27 @@ Add to your [JetBrains IDE](https://www.jetbrains.com/) acp.json according to th
 acp.json
 
 ```
+
 {
 
+  "agent_servers": {
 
+    "OpenCode": {
 
-"agent_servers": {
+      "command": "/absolute/path/bin/opencode",
 
+      "args": ["acp"]
 
+    }
 
-"OpenCode": {
-
-
-
-"command": "/absolute/path/bin/opencode",
-
-
-
-"args": ["acp"]
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
 ```
 
-To open it, use the new âOpenCodeâ agent in the AI Chat agent selector.
+To open it, use the new ‘OpenCode’ agent in the AI Chat agent selector.
 
 ---
 
@@ -275,81 +151,53 @@ To open it, use the new âOpenCodeâ agent in the AI Chat agent selector
 Add to your [Avante.nvim](https://github.com/yetone/avante.nvim) configuration:
 
 ```
+
 {
 
+  acp_providers = {
 
+    ["opencode"] = {
 
-acp_providers = {
+      command = "opencode",
 
+      args = { "acp" }
 
+    }
 
-["opencode"] = {
-
-
-
-command = "opencode",
-
-
-
-args = { "acp" }
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
 ```
 
 If you need to pass environment variables:
 
 ```
+
 {
 
+  acp_providers = {
 
+    ["opencode"] = {
 
-acp_providers = {
+      command = "opencode",
 
+      args = { "acp" },
 
+      env = {
 
-["opencode"] = {
+        OPENCODE_API_KEY = os.getenv("OPENCODE_API_KEY")
 
+      }
 
+    }
 
-command = "opencode",
-
-
-
-args = { "acp" },
-
-
-
-env = {
-
-
-
-OPENCODE_API_KEY = os.getenv("OPENCODE_API_KEY")
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
-
-
-
-}
 ```
 
 ---
@@ -359,43 +207,28 @@ OPENCODE_API_KEY = os.getenv("OPENCODE_API_KEY")
 To use OpenCode as an ACP agent in [CodeCompanion.nvim](https://github.com/olimorris/codecompanion.nvim), add the following to your Neovim config:
 
 ```
+
 require("codecompanion").setup({
 
+  interactions = {
 
+    chat = {
 
-interactions = {
+      adapter = {
 
+        name = "opencode",
 
+        model = "claude-sonnet-4",
 
-chat = {
+      },
 
+    },
 
-
-adapter = {
-
-
-
-name = "opencode",
-
-
-
-model = "claude-sonnet-4",
-
-
-
-},
-
-
-
-},
-
-
-
-},
-
-
+  },
 
 })
+
+
 ```
 
 This config sets up CodeCompanion to use OpenCode as the ACP agent for chat.
@@ -410,15 +243,9 @@ Note
 
 Some built-in slash commands like `/undo` and `/redo` are currently unsupported.
 
-- Built-in tools (file operations, terminal commands, etc.)
-- Custom tools and slash commands
-- MCP servers configured in your OpenCode config
-- Project-specific rules from `AGENTS.md`
-- Custom formatters and linters
-- Agents and permissions system
-
-[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/acp.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
-
-© [Anomaly](https://anoma.ly)
-
-Last updated: May 13, 2026
+* Built-in tools (file operations, terminal commands, etc.)
+* Custom tools and slash commands
+* MCP servers configured in your OpenCode config
+* Project-specific rules from `AGENTS.md`
+* Custom formatters and linters
+* Agents and permissions system

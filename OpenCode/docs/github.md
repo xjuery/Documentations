@@ -1,90 +1,15 @@
- [Skip to content](#_top)
+Title: GitHub
 
-[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
+URL Source: https://opencode.ai/docs/github
 
-[app.header.home](/)[app.header.docs](../docs.md)
+Markdown Content:
+---
+title: GitHub
+description: Use OpenCode in GitHub issues and pull-requests.
+image: https://social-cards.sst.dev/opencode-docs/R2l0SHVi.png?desc=Use%20OpenCode%20in%20GitHub%20issues%20and%20pull-requests.
+---
 
-Search  `CtrlK`   
-
-Cancel
-
-       
-
-- [Intro](../docs.md)
-- [Config](config.md)
-- [Providers](providers.md)
-- [Network](network.md)
-- [Enterprise](enterprise.md)
-- [Troubleshooting](troubleshooting.md)
-- [Windows](windows-wsl.md)
-- Usage
-
-   
-  - [Go](go.md)
-  - [TUI](tui.md)
-  - [CLI](cli.md)
-  - [Web](web.md)
-  - [IDE](ide.md)
-  - [Zen](zen.md)
-  - [Share](share.md)
-  - [GitHub](github.md)
-  - [GitLab](gitlab.md)
-- Configure
-
-   
-  - [Tools](tools.md)
-  - [Rules](rules.md)
-  - [Agents](agents.md)
-  - [Models](models.md)
-  - [Themes](themes.md)
-  - [Keybinds](keybinds.md)
-  - [Commands](commands.md)
-  - [Formatters](formatters.md)
-  - [Permissions](permissions.md)
-  - [LSP Servers](lsp.md)
-  - [MCP servers](mcp-servers.md)
-  - [ACP Support](acp.md)
-  - [Agent Skills](skills.md)
-  - [Custom Tools](custom-tools.md)
-- Develop
-
-   
-  - [SDK](sdk.md)
-  - [Server](server.md)
-  - [Plugins](plugins.md)
-  - [Ecosystem](ecosystem.md)
-
-[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
-
-  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
-
-On this page
-
-- [Overview](#_top)
-- [Features](#features)
-- [Installation](#installation) 
-  - [Manual Setup](#manual-setup)
-- [Configuration](#configuration)
-- [Supported Events](#supported-events) 
-  - [Schedule Example](#schedule-example)
-  - [Pull Request Example](#pull-request-example)
-  - [Issues Triage Example](#issues-triage-example)
-- [Custom prompts](#custom-prompts)
-- [Examples](#examples)
-
-## On this page
-
-- [Overview](#_top)
-- [Features](#features)
-- [Installation](#installation) 
-  - [Manual Setup](#manual-setup)
-- [Configuration](#configuration)
-- [Supported Events](#supported-events) 
-  - [Schedule Example](#schedule-example)
-  - [Pull Request Example](#pull-request-example)
-  - [Issues Triage Example](#issues-triage-example)
-- [Custom prompts](#custom-prompts)
-- [Examples](#examples)
+[Skip to content](#%5Ftop) 
 
 # GitHub
 
@@ -96,9 +21,9 @@ OpenCode integrates with your GitHub workflow. Mention `/opencode` or `/oc` in y
 
 ## [Features](#features)
 
-- **Triage issues**: Ask OpenCode to look into an issue and explain it to you.
-- **Fix and implement**: Ask OpenCode to fix an issue or implement a feature. And it will work in a new branch and submits a PR with all the changes.
-- **Secure**: OpenCode runs inside your GitHubâs runners.
+* **Triage issues**: Ask OpenCode to look into an issue and explain it to you.
+* **Fix and implement**: Ask OpenCode to fix an issue or implement a feature. And it will work in a new branch and submits a PR with all the changes.
+* **Secure**: OpenCode runs inside your GitHub’s runners.
 
 ---
 
@@ -109,7 +34,10 @@ Run the following command in a project that is in a GitHub repo:
 Terminal window
 
 ```
+
 opencode github install
+
+
 ```
 
 This will walk you through installing the GitHub app, creating the workflow, and setting up secrets.
@@ -120,163 +48,62 @@ This will walk you through installing the GitHub app, creating the workflow, and
 
 Or you can set it up manually.
 
-1. **Install the GitHub app**
-
-   Head over to [**github.com/apps/opencode-agent**](https://github.com/apps/opencode-agent). Make sure itâs installed on the target repository.
-2. **Add the workflow**
-
-   Add the following workflow file to `.github/workflows/opencode.yml` in your repo. Make sure to set the appropriate `model` and required API keys in `env`.
-
-   .github/workflows/opencode.yml
-
-   ```
-   name: opencode
-
-
-
-   on:
-
-
-
-   issue_comment:
-
-
-
-   types: [created]
-
-
-
-   pull_request_review_comment:
-
-
-
-   types: [created]
-
-
-
-   jobs:
-
-
-
-   opencode:
-
-
-
-   if: |
-
-
-
-   contains(github.event.comment.body, '/oc') ||
-
-
-
-   contains(github.event.comment.body, '/opencode')
-
-
-
-   runs-on: ubuntu-latest
-
-
-
-   permissions:
-
-
-
-   id-token: write
-
-
-
-   steps:
-
-
-
-   - name: Checkout repository
-
-
-
-   uses: actions/checkout@v6
-
-
-
-   with:
-
-
-
-   fetch-depth: 1
-
-
-
-   persist-credentials: false
-
-
-
-   - name: Run OpenCode
-
-
-
-   uses: anomalyco/opencode/github@latest
-
-
-
-   env:
-
-
-
-   ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
-
-
-   with:
-
-
-
-   model: anthropic/claude-sonnet-4-20250514
-
-
-
-   # share: true
-
-
-
-   # github_token: xxxx
-   ```
-3. **Store the API keys in secrets**
-
-   In your organization or project **settings**, expand **Secrets and variables** on the left and select **Actions**. And add the required API keys.
+1. **Install the GitHub app**  
+Head over to [**github.com/apps/opencode-agent**](https://github.com/apps/opencode-agent). Make sure it’s installed on the target repository.
+2. **Add the workflow**  
+Add the following workflow file to `.github/workflows/opencode.yml` in your repo. Make sure to set the appropriate `model` and required API keys in `env`.  
+.github/workflows/opencode.yml  
+```  
+name: opencode  
+on:  
+  issue_comment:  
+    types: [created]  
+  pull_request_review_comment:  
+    types: [created]  
+jobs:  
+  opencode:  
+    if: |  
+      contains(github.event.comment.body, '/oc') ||  
+      contains(github.event.comment.body, '/opencode')  
+    runs-on: ubuntu-latest  
+    permissions:  
+      id-token: write  
+    steps:  
+       - name: Checkout repository  
+         uses: actions/checkout@v6  
+         with:  
+           fetch-depth: 1  
+           persist-credentials: false  
+       - name: Run OpenCode  
+        uses: anomalyco/opencode/github@latest  
+        env:  
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}  
+        with:  
+          model: anthropic/claude-sonnet-4-20250514  
+          # share: true  
+          # github_token: xxxx  
+```
+3. **Store the API keys in secrets**  
+In your organization or project **settings**, expand **Secrets and variables** on the left and select **Actions**. And add the required API keys.
 
 ---
 
 ## [Configuration](#configuration)
 
-- `model`: The model to use with OpenCode. Takes the format of `provider/model`. This is **required**.
-- `agent`: The agent to use. Must be a primary agent. Falls back to `default_agent` from config or `"build"` if not found.
-- `share`: Whether to share the OpenCode session. Defaults to **true** for public repositories.
-- `prompt`: Optional custom prompt to override the default behavior. Use this to customize how OpenCode processes requests.
-- `token`: Optional GitHub access token for performing operations such as creating comments, committing changes, and opening pull requests. By default, OpenCode uses the installation access token from the OpenCode GitHub App, so commits, comments, and pull requests appear as coming from the app.
-
-  Alternatively, you can use the GitHub Action runnerâs [built-in `GITHUB_TOKEN`](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token) without installing the OpenCode GitHub App. Just make sure to grant the required permissions in your workflow:
-
-  ```
-  permissions:
-
-
-
-  id-token: write
-
-
-
-  contents: write
-
-
-
-  pull-requests: write
-
-
-
-  issues: write
-  ```
-
-  You can also use a [personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)(PAT) if preferred.
+* `model`: The model to use with OpenCode. Takes the format of `provider/model`. This is **required**.
+* `agent`: The agent to use. Must be a primary agent. Falls back to `default_agent` from config or `"build"` if not found.
+* `share`: Whether to share the OpenCode session. Defaults to **true** for public repositories.
+* `prompt`: Optional custom prompt to override the default behavior. Use this to customize how OpenCode processes requests.
+* `token`: Optional GitHub access token for performing operations such as creating comments, committing changes, and opening pull requests. By default, OpenCode uses the installation access token from the OpenCode GitHub App, so commits, comments, and pull requests appear as coming from the app.  
+Alternatively, you can use the GitHub Action runner’s [built-in GITHUB\_TOKEN](https://docs.github.com/en/actions/tutorials/authenticate-with-github%5Ftoken) without installing the OpenCode GitHub App. Just make sure to grant the required permissions in your workflow:  
+```  
+permissions:  
+  id-token: write  
+  contents: write  
+  pull-requests: write  
+  issues: write  
+```  
+You can also use a [personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)(PAT) if preferred.
 
 ---
 
@@ -284,14 +111,14 @@ Or you can set it up manually.
 
 OpenCode can be triggered by the following GitHub events:
 
-| Event Type | Triggered By | Details |
-| --- | --- | --- |
-| `issue_comment` | Comment on an issue or PR | Mention `/opencode` or `/oc` in your comment. OpenCode reads context and can create branches, open PRs, or reply. |
-| `pull_request_review_comment` | Comment on specific code lines in a PR | Mention `/opencode` or `/oc` while reviewing code. OpenCode receives file path, line numbers, and diff context. |
-| `issues` | Issue opened or edited | Automatically trigger OpenCode when issues are created or modified. Requires `prompt` input. |
-| `pull_request` | PR opened or updated | Automatically trigger OpenCode when PRs are opened, synchronized, or reopened. Useful for automated reviews. |
-| `schedule` | Cron-based schedule | Run OpenCode on a schedule. Requires `prompt` input. Output goes to logs and PRs (no issue to comment on). |
-| `workflow_dispatch` | Manual trigger from GitHub UI | Trigger OpenCode on demand via Actions tab. Requires `prompt` input. Output goes to logs and PRs. |
+| Event Type                     | Triggered By                           | Details                                                                                                       |
+| ------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| issue\_comment                 | Comment on an issue or PR              | Mention /opencode or /oc in your comment. OpenCode reads context and can create branches, open PRs, or reply. |
+| pull\_request\_review\_comment | Comment on specific code lines in a PR | Mention /opencode or /oc while reviewing code. OpenCode receives file path, line numbers, and diff context.   |
+| issues                         | Issue opened or edited                 | Automatically trigger OpenCode when issues are created or modified. Requires prompt input.                    |
+| pull\_request                  | PR opened or updated                   | Automatically trigger OpenCode when PRs are opened, synchronized, or reopened. Useful for automated reviews.  |
+| schedule                       | Cron-based schedule                    | Run OpenCode on a schedule. Requires prompt input. Output goes to logs and PRs (no issue to comment on).      |
+| workflow\_dispatch             | Manual trigger from GitHub UI          | Trigger OpenCode on demand via Actions tab. Requires prompt input. Output goes to logs and PRs.               |
 
 ### [Schedule Example](#schedule-example)
 
@@ -300,110 +127,66 @@ Run OpenCode on a schedule to perform automated tasks:
 .github/workflows/opencode-scheduled.yml
 
 ```
-name: Scheduled OpenCode Task
 
+name: Scheduled OpenCode Task
 
 
 on:
 
+  schedule:
 
-
-schedule:
-
-
-
-- cron: "0 9 * * 1" # Every Monday at 9am UTC
-
+    - cron: "0 9 * * 1" # Every Monday at 9am UTC
 
 
 jobs:
 
+  opencode:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+
+      id-token: write
+
+      contents: write
+
+      pull-requests: write
+
+      issues: write
+
+    steps:
+
+      - name: Checkout repository
+
+        uses: actions/checkout@v6
+
+        with:
+
+          persist-credentials: false
 
 
-opencode:
+      - name: Run OpenCode
+
+        uses: anomalyco/opencode/github@latest
+
+        env:
+
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+        with:
+
+          model: anthropic/claude-sonnet-4-20250514
+
+          prompt: |
+
+            Review the codebase for any TODO comments and create a summary.
+
+            If you find issues worth addressing, open an issue to track them.
 
 
-
-runs-on: ubuntu-latest
-
-
-
-permissions:
-
-
-
-id-token: write
-
-
-
-contents: write
-
-
-
-pull-requests: write
-
-
-
-issues: write
-
-
-
-steps:
-
-
-
-- name: Checkout repository
-
-
-
-uses: actions/checkout@v6
-
-
-
-with:
-
-
-
-persist-credentials: false
-
-
-
-- name: Run OpenCode
-
-
-
-uses: anomalyco/opencode/github@latest
-
-
-
-env:
-
-
-
-ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
-
-
-with:
-
-
-
-model: anthropic/claude-sonnet-4-20250514
-
-
-
-prompt: |
-
-
-
-Review the codebase for any TODO comments and create a summary.
-
-
-
-If you find issues worth addressing, open an issue to track them.
 ```
 
-For scheduled events, the `prompt` input is **required** since thereâs no comment to extract instructions from. Scheduled workflows run without a user context to permission-check, so the workflow must grant `contents: write` and `pull-requests: write` if you expect OpenCode to create branches or PRs.
+For scheduled events, the `prompt` input is **required** since there’s no comment to extract instructions from. Scheduled workflows run without a user context to permission-check, so the workflow must grant `contents: write` and `pull-requests: write` if you expect OpenCode to create branches or PRs.
 
 ---
 
@@ -414,115 +197,66 @@ Automatically review PRs when they are opened or updated:
 .github/workflows/opencode-review.yml
 
 ```
-name: opencode-review
 
+name: opencode-review
 
 
 on:
 
+  pull_request:
 
-
-pull_request:
-
-
-
-types: [opened, synchronize, reopened, ready_for_review]
-
+    types: [opened, synchronize, reopened, ready_for_review]
 
 
 jobs:
 
+  review:
 
+    runs-on: ubuntu-latest
 
-review:
+    permissions:
 
+      id-token: write
 
+      contents: read
 
-runs-on: ubuntu-latest
+      pull-requests: read
 
+      issues: read
 
+    steps:
 
-permissions:
+      - uses: actions/checkout@v6
 
+        with:
 
+          persist-credentials: false
 
-id-token: write
+      - uses: anomalyco/opencode/github@latest
 
+        env:
 
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-contents: read
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+        with:
 
+          model: anthropic/claude-sonnet-4-20250514
 
-pull-requests: read
+          use_github_token: true
 
+          prompt: |
 
+            Review this pull request:
 
-issues: read
+            - Check for code quality issues
 
+            - Look for potential bugs
 
+            - Suggest improvements
 
-steps:
 
-
-
-- uses: actions/checkout@v6
-
-
-
-with:
-
-
-
-persist-credentials: false
-
-
-
-- uses: anomalyco/opencode/github@latest
-
-
-
-env:
-
-
-
-ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
-
-
-GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
-with:
-
-
-
-model: anthropic/claude-sonnet-4-20250514
-
-
-
-use_github_token: true
-
-
-
-prompt: |
-
-
-
-Review this pull request:
-
-
-
-- Check for code quality issues
-
-
-
-- Look for potential bugs
-
-
-
-- Suggest improvements
 ```
 
 For `pull_request` events, if no `prompt` is provided, OpenCode defaults to reviewing the pull request.
@@ -536,205 +270,123 @@ Automatically triage new issues. This example filters to accounts older than 30 
 .github/workflows/opencode-triage.yml
 
 ```
-name: Issue Triage
 
+name: Issue Triage
 
 
 on:
 
+  issues:
 
-
-issues:
-
-
-
-types: [opened]
-
+    types: [opened]
 
 
 jobs:
 
+  triage:
 
+    runs-on: ubuntu-latest
 
-triage:
+    permissions:
 
+      id-token: write
 
+      contents: write
 
-runs-on: ubuntu-latest
+      pull-requests: write
 
+      issues: write
 
+    steps:
 
-permissions:
+      - name: Check account age
 
+        id: check
 
+        uses: actions/github-script@v7
 
-id-token: write
+        with:
 
+          script: |
 
+            const user = await github.rest.users.getByUsername({
 
-contents: write
+              username: context.payload.issue.user.login
 
+            });
 
+            const created = new Date(user.data.created_at);
 
-pull-requests: write
+            const days = (Date.now() - created) / (1000 * 60 * 60 * 24);
 
+            return days >= 30;
 
+          result-encoding: string
 
-issues: write
 
+      - uses: actions/checkout@v6
 
+        if: steps.check.outputs.result == 'true'
 
-steps:
+        with:
 
+          persist-credentials: false
 
 
-- name: Check account age
+      - uses: anomalyco/opencode/github@latest
 
+        if: steps.check.outputs.result == 'true'
 
+        env:
 
-id: check
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
+        with:
 
+          model: anthropic/claude-sonnet-4-20250514
 
-uses: actions/github-script@v7
+          prompt: |
 
+            Review this issue. If there's a clear fix or relevant docs:
 
+            - Provide documentation links
 
-with:
+            - Add error handling guidance for code examples
 
+            Otherwise, do not comment.
 
 
-script: |
-
-
-
-const user = await github.rest.users.getByUsername({
-
-
-
-username: context.payload.issue.user.login
-
-
-
-});
-
-
-
-const created = new Date(user.data.created_at);
-
-
-
-const days = (Date.now() - created) / (1000 * 60 * 60 * 24);
-
-
-
-return days >= 30;
-
-
-
-result-encoding: string
-
-
-
-- uses: actions/checkout@v6
-
-
-
-if: steps.check.outputs.result == 'true'
-
-
-
-with:
-
-
-
-persist-credentials: false
-
-
-
-- uses: anomalyco/opencode/github@latest
-
-
-
-if: steps.check.outputs.result == 'true'
-
-
-
-env:
-
-
-
-ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
-
-
-with:
-
-
-
-model: anthropic/claude-sonnet-4-20250514
-
-
-
-prompt: |
-
-
-
-Review this issue. If there's a clear fix or relevant docs:
-
-
-
-- Provide documentation links
-
-
-
-- Add error handling guidance for code examples
-
-
-
-Otherwise, do not comment.
 ```
 
-For `issues` events, the `prompt` input is **required** since thereâs no comment to extract instructions from.
+For `issues` events, the `prompt` input is **required** since there’s no comment to extract instructions from.
 
 ---
 
 ## [Custom prompts](#custom-prompts)
 
-Override the default prompt to customize OpenCodeâs behavior for your workflow.
+Override the default prompt to customize OpenCode’s behavior for your workflow.
 
 .github/workflows/opencode.yml
 
 ```
+
 - uses: anomalyco/opencode/github@latest
 
+  with:
+
+    model: anthropic/claude-sonnet-4-5
+
+    prompt: |
+
+      Review this pull request:
+
+      - Check for code quality issues
+
+      - Look for potential bugs
+
+      - Suggest improvements
 
 
-with:
-
-
-
-model: anthropic/claude-sonnet-4-5
-
-
-
-prompt: |
-
-
-
-Review this pull request:
-
-
-
-- Check for code quality issues
-
-
-
-- Look for potential bugs
-
-
-
-- Suggest improvements
 ```
 
 This is useful for enforcing specific review criteria, coding standards, or focus areas relevant to your project.
@@ -745,56 +397,33 @@ This is useful for enforcing specific review criteria, coding standards, or focu
 
 Here are some examples of how you can use OpenCode in GitHub.
 
-- **Explain an issue**
-
-  Add this comment in a GitHub issue.
-
-  ```
-  /opencode explain this issue
-  ```
-
-  OpenCode will read the entire thread, including all comments, and reply with a clear explanation.
-- **Fix an issue**
-
-  In a GitHub issue, say:
-
-  ```
-  /opencode fix this
-  ```
-
-  And OpenCode will create a new branch, implement the changes, and open a PR with the changes.
-- **Review PRs and make changes**
-
-  Leave the following comment on a GitHub PR.
-
-  ```
-  Delete the attachment from S3 when the note is removed /oc
-  ```
-
-  OpenCode will implement the requested change and commit it to the same PR.
-- **Review specific code lines**
-
-  Leave a comment directly on code lines in the PRâs âFilesâ tab. OpenCode automatically detects the file, line numbers, and diff context to provide precise responses.
-
-  ```
-  [Comment on specific lines in Files tab]
-
-
-
-  /oc add error handling here
-  ```
-
-  When commenting on specific lines, OpenCode receives:
-
-  - The exact file being reviewed
-  - The specific lines of code
-  - The surrounding diff context
-  - Line number information
-
-  This allows for more targeted requests without needing to specify file paths or line numbers manually.
-
-[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/github.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
-
-© [Anomaly](https://anoma.ly)
-
-Last updated: May 13, 2026
+* **Explain an issue**  
+Add this comment in a GitHub issue.  
+```  
+/opencode explain this issue  
+```  
+OpenCode will read the entire thread, including all comments, and reply with a clear explanation.
+* **Fix an issue**  
+In a GitHub issue, say:  
+```  
+/opencode fix this  
+```  
+And OpenCode will create a new branch, implement the changes, and open a PR with the changes.
+* **Review PRs and make changes**  
+Leave the following comment on a GitHub PR.  
+```  
+Delete the attachment from S3 when the note is removed /oc  
+```  
+OpenCode will implement the requested change and commit it to the same PR.
+* **Review specific code lines**  
+Leave a comment directly on code lines in the PR’s “Files” tab. OpenCode automatically detects the file, line numbers, and diff context to provide precise responses.  
+```  
+[Comment on specific lines in Files tab]  
+/oc add error handling here  
+```  
+When commenting on specific lines, OpenCode receives:  
+   * The exact file being reviewed  
+   * The specific lines of code  
+   * The surrounding diff context  
+   * Line number information  
+This allows for more targeted requests without needing to specify file paths or line numbers manually.

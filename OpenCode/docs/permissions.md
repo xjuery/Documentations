@@ -1,90 +1,15 @@
- [Skip to content](#_top)
+Title: Permissions
 
-[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
+URL Source: https://opencode.ai/docs/permissions
 
-[app.header.home](/)[app.header.docs](../docs.md)
+Markdown Content:
+---
+title: Permissions
+description: Control which actions require approval to run.
+image: https://social-cards.sst.dev/opencode-docs/UGVybWlzc2lvbnM%3D.png?desc=Control%20which%20actions%20require%20approval%20to%20run.
+---
 
-Search  `CtrlK`   
-
-Cancel
-
-       
-
-- [Intro](../docs.md)
-- [Config](config.md)
-- [Providers](providers.md)
-- [Network](network.md)
-- [Enterprise](enterprise.md)
-- [Troubleshooting](troubleshooting.md)
-- [Windows](windows-wsl.md)
-- Usage
-
-   
-  - [Go](go.md)
-  - [TUI](tui.md)
-  - [CLI](cli.md)
-  - [Web](web.md)
-  - [IDE](ide.md)
-  - [Zen](zen.md)
-  - [Share](share.md)
-  - [GitHub](github.md)
-  - [GitLab](gitlab.md)
-- Configure
-
-   
-  - [Tools](tools.md)
-  - [Rules](rules.md)
-  - [Agents](agents.md)
-  - [Models](models.md)
-  - [Themes](themes.md)
-  - [Keybinds](keybinds.md)
-  - [Commands](commands.md)
-  - [Formatters](formatters.md)
-  - [Permissions](permissions.md)
-  - [LSP Servers](lsp.md)
-  - [MCP servers](mcp-servers.md)
-  - [ACP Support](acp.md)
-  - [Agent Skills](skills.md)
-  - [Custom Tools](custom-tools.md)
-- Develop
-
-   
-  - [SDK](sdk.md)
-  - [Server](server.md)
-  - [Plugins](plugins.md)
-  - [Ecosystem](ecosystem.md)
-
-[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
-
-  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
-
-On this page
-
-- [Overview](#_top)
-- [Actions](#actions)
-- [Configuration](#configuration)
-- [Granular Rules (Object Syntax)](#granular-rules-object-syntax) 
-  - [Wildcards](#wildcards)
-  - [Home Directory Expansion](#home-directory-expansion)
-  - [External Directories](#external-directories)
-- [Available Permissions](#available-permissions)
-- [Defaults](#defaults)
-- [What âAskâ Does](#what-ask-does)
-- [Agents](#agents)
-
-## On this page
-
-- [Overview](#_top)
-- [Actions](#actions)
-- [Configuration](#configuration)
-- [Granular Rules (Object Syntax)](#granular-rules-object-syntax) 
-  - [Wildcards](#wildcards)
-  - [Home Directory Expansion](#home-directory-expansion)
-  - [External Directories](#external-directories)
-- [Available Permissions](#available-permissions)
-- [Defaults](#defaults)
-- [What âAskâ Does](#what-ask-does)
-- [Agents](#agents)
+[Skip to content](#%5Ftop) 
 
 # Permissions
 
@@ -100,9 +25,9 @@ As of `v1.1.1`, the legacy `tools` boolean config is deprecated and has been mer
 
 Each permission rule resolves to one of:
 
-- `"allow"` â run without approval
-- `"ask"` â prompt for approval
-- `"deny"` â block the action
+* `"allow"` — run without approval
+* `"ask"` — prompt for approval
+* `"deny"` — block the action
 
 ---
 
@@ -113,35 +38,24 @@ You can set permissions globally (with `*`), and override specific tools.
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
+  "permission": {
 
-"$schema": "https://opencode.ai/config.json",
+    "*": "ask",
 
+    "bash": "allow",
 
+    "edit": "deny"
 
-"permission": {
-
-
-
-"*": "ask",
-
-
-
-"bash": "allow",
-
-
-
-"edit": "deny"
-
-
+  }
 
 }
 
 
-
-}
 ```
 
 You can also set all permissions at once:
@@ -149,19 +63,16 @@ You can also set all permissions at once:
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
-
-"$schema": "https://opencode.ai/config.json",
-
-
-
-"permission": "allow"
-
-
+  "permission": "allow"
 
 }
+
+
 ```
 
 ---
@@ -173,67 +84,40 @@ For most permissions, you can use an object to apply different actions based on 
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
+  "permission": {
 
-"$schema": "https://opencode.ai/config.json",
+    "bash": {
 
+      "*": "ask",
 
+      "git *": "allow",
 
-"permission": {
+      "npm *": "allow",
 
+      "rm *": "deny",
 
+      "grep *": "allow"
 
-"bash": {
+    },
 
+    "edit": {
 
+      "*": "deny",
 
-"*": "ask",
+      "packages/web/src/content/docs/*.mdx": "allow"
 
+    }
 
-
-"git *": "allow",
-
-
-
-"npm *": "allow",
-
-
-
-"rm *": "deny",
-
-
-
-"grep *": "allow"
-
-
-
-},
-
-
-
-"edit": {
-
-
-
-"*": "deny",
-
-
-
-"packages/web/src/content/docs/*.mdx": "allow"
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
 ```
 
 Rules are evaluated by pattern match, with the **last matching rule winning**. A common pattern is to put the catch-all `"*"` rule first, and more specific rules after it.
@@ -242,17 +126,17 @@ Rules are evaluated by pattern match, with the **last matching rule winning**. A
 
 Permission patterns use simple wildcard matching:
 
-- `*` matches zero or more of any character
-- `?` matches exactly one character
-- All other characters match literally
+* `*` matches zero or more of any character
+* `?` matches exactly one character
+* All other characters match literally
 
 ### [Home Directory Expansion](#home-directory-expansion)
 
-You can use `~` or `$HOME` at the start of a pattern to reference your home directory. This is particularly useful for [`external_directory`](#external-directories) rules.
+You can use `~` or `$HOME` at the start of a pattern to reference your home directory. This is particularly useful for [external\_directory](#external-directories) rules.
 
-- `~/projects/*` -> `/Users/username/projects/*`
-- `$HOME/projects/*` -> `/Users/username/projects/*`
-- `~` -> `/Users/username`
+* `~/projects/*` \-> `/Users/username/projects/*`
+* `$HOME/projects/*` \-> `/Users/username/projects/*`
+* `~` \-> `/Users/username`
 
 ### [External Directories](#external-directories)
 
@@ -265,83 +149,55 @@ For example, this allows access to everything under `~/projects/personal/`:
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
+  "permission": {
 
-"$schema": "https://opencode.ai/config.json",
+    "external_directory": {
 
+      "~/projects/personal/**": "allow"
 
+    }
 
-"permission": {
-
-
-
-"external_directory": {
-
-
-
-"~/projects/personal/**": "allow"
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
 ```
 
-Any directory allowed here inherits the same defaults as the current workspace. Since [`read` defaults to `allow`](#defaults), reads are also allowed for entries under `external_directory` unless overridden. Add explicit rules when a tool should be restricted in these paths, such as blocking edits while keeping reads:
+Any directory allowed here inherits the same defaults as the current workspace. Since [read defaults to allow](#defaults), reads are also allowed for entries under `external_directory` unless overridden. Add explicit rules when a tool should be restricted in these paths, such as blocking edits while keeping reads:
 
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
+  "permission": {
 
-"$schema": "https://opencode.ai/config.json",
+    "external_directory": {
 
+      "~/projects/personal/**": "allow"
 
+    },
 
-"permission": {
+    "edit": {
 
+      "~/projects/personal/**": "deny"
 
+    }
 
-"external_directory": {
-
-
-
-"~/projects/personal/**": "allow"
-
-
-
-},
-
-
-
-"edit": {
-
-
-
-"~/projects/personal/**": "deny"
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
 ```
 
 Keep the list focused on trusted paths, and layer extra allow or deny rules as needed for other tools (for example `bash`).
@@ -352,81 +208,66 @@ Keep the list focused on trusted paths, and layer extra allow or deny rules as n
 
 OpenCode permissions are keyed by tool name, plus a couple of safety guards:
 
-- `read` â reading a file (matches the file path)
-- `edit` â all file modifications (covers `edit`, `write`, `patch`)
-- `glob` â file globbing (matches the glob pattern)
-- `grep` â content search (matches the regex pattern)
-- `bash` â running shell commands (matches parsed commands like `git status --porcelain`)
-- `task` â launching subagents (matches the subagent type)
-- `skill` â loading a skill (matches the skill name)
-- `lsp` â running LSP queries (currently non-granular)
-- `question` â asking the user questions during execution
-- `webfetch` â fetching a URL (matches the URL)
-- `websearch` â web search (matches the query)
-- `external_directory` â triggered when a tool touches paths outside the project working directory
-- `doom_loop` â triggered when the same tool call repeats 3 times with identical input
+* `read` — reading a file (matches the file path)
+* `edit` — all file modifications (covers `edit`, `write`, `patch`)
+* `glob` — file globbing (matches the glob pattern)
+* `grep` — content search (matches the regex pattern)
+* `bash` — running shell commands (matches parsed commands like `git status --porcelain`)
+* `task` — launching subagents (matches the subagent type)
+* `skill` — loading a skill (matches the skill name)
+* `lsp` — running LSP queries (currently non-granular)
+* `question` — asking the user questions during execution
+* `webfetch` — fetching a URL (matches the URL)
+* `websearch` — web search (matches the query)
+* `external_directory` — triggered when a tool touches paths outside the project working directory
+* `doom_loop` — triggered when the same tool call repeats 3 times with identical input
 
 ---
 
 ## [Defaults](#defaults)
 
-If you donât specify anything, OpenCode starts from permissive defaults:
+If you don’t specify anything, OpenCode starts from permissive defaults:
 
-- Most permissions default to `"allow"`.
-- `doom_loop` and `external_directory` default to `"ask"`.
-- `read` is `"allow"`, but `.env` files are denied by default:
+* Most permissions default to `"allow"`.
+* `doom_loop` and `external_directory` default to `"ask"`.
+* `read` is `"allow"`, but `.env` files are denied by default:
 
 opencode.json
 
 ```
+
 {
 
+  "permission": {
 
+    "read": {
 
-"permission": {
+      "*": "allow",
 
+      "*.env": "deny",
 
+      "*.env.*": "deny",
 
-"read": {
+      "*.env.example": "allow"
 
+    }
 
-
-"*": "allow",
-
-
-
-"*.env": "deny",
-
-
-
-"*.env.*": "deny",
-
-
-
-"*.env.example": "allow"
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
 ```
 
 ---
 
-## [What âAskâ Does](#what-ask-does)
+## [What “Ask” Does](#what-ask-does)
 
 When OpenCode prompts for approval, the UI offers three outcomes:
 
-- `once` â approve just this request
-- `always` â approve future requests matching the suggested patterns (for the rest of the current OpenCode session)
-- `reject` â deny the request
+* `once` — approve just this request
+* `always` — approve future requests matching the suggested patterns (for the rest of the current OpenCode session)
+* `reject` — deny the request
 
 The set of patterns that `always` would approve is provided by the tool (for example, bash approvals typically whitelist a safe command prefix like `git status*`).
 
@@ -443,151 +284,88 @@ Refer to the [Granular Rules (Object Syntax)](#granular-rules-object-syntax) sec
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
+  "permission": {
 
-"$schema": "https://opencode.ai/config.json",
+    "bash": {
 
+      "*": "ask",
 
+      "git *": "allow",
 
-"permission": {
+      "git commit *": "deny",
 
+      "git push *": "deny",
 
+      "grep *": "allow"
 
-"bash": {
+    }
 
+  },
 
+  "agent": {
 
-"*": "ask",
+    "build": {
 
+      "permission": {
 
+        "bash": {
 
-"git *": "allow",
+          "*": "ask",
 
+          "git *": "allow",
 
+          "git commit *": "ask",
 
-"git commit *": "deny",
+          "git push *": "deny",
 
+          "grep *": "allow"
 
+        }
 
-"git push *": "deny",
+      }
 
+    }
 
-
-"grep *": "allow"
-
-
-
-}
-
-
-
-},
-
-
-
-"agent": {
-
-
-
-"build": {
-
-
-
-"permission": {
-
-
-
-"bash": {
-
-
-
-"*": "ask",
-
-
-
-"git *": "allow",
-
-
-
-"git commit *": "ask",
-
-
-
-"git push *": "deny",
-
-
-
-"grep *": "allow"
-
-
+  }
 
 }
 
 
-
-}
-
-
-
-}
-
-
-
-}
-
-
-
-}
 ```
 
 You can also configure agent permissions in Markdown:
 
-~/.config/opencode/agents/review.md
+\~/.config/opencode/agents/review.md
 
 ```
+
 ---
-
-
 
 description: Code review without edits
 
-
-
 mode: subagent
-
-
 
 permission:
 
+  edit: deny
 
+  bash: ask
 
-edit: deny
-
-
-
-bash: ask
-
-
-
-webfetch: deny
-
-
+  webfetch: deny
 
 ---
 
 
-
 Only analyze code and suggest changes.
+
+
 ```
 
 Tip
 
 Use pattern matching for commands with arguments. `"grep *"` allows `grep pattern file.txt`, while `"grep"` alone would block it. Commands like `git status` work for default behavior but require explicit permission (like `"git status *"`) when arguments are passed.
-
-[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/permissions.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
-
-© [Anomaly](https://anoma.ly)
-
-Last updated: May 13, 2026

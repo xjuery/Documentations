@@ -1,98 +1,21 @@
- [Skip to content](#_top)
+Title: Rules
 
-[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
+URL Source: https://opencode.ai/docs/rules
 
-[app.header.home](/)[app.header.docs](../docs.md)
+Markdown Content:
+---
+title: Rules
+description: Set custom instructions for opencode.
+image: https://social-cards.sst.dev/opencode-docs/UnVsZXM%3D.png?desc=Set%20custom%20instructions%20for%20opencode.
+---
 
-Search  `CtrlK`   
-
-Cancel
-
-       
-
-- [Intro](../docs.md)
-- [Config](config.md)
-- [Providers](providers.md)
-- [Network](network.md)
-- [Enterprise](enterprise.md)
-- [Troubleshooting](troubleshooting.md)
-- [Windows](windows-wsl.md)
-- Usage
-
-   
-  - [Go](go.md)
-  - [TUI](tui.md)
-  - [CLI](cli.md)
-  - [Web](web.md)
-  - [IDE](ide.md)
-  - [Zen](zen.md)
-  - [Share](share.md)
-  - [GitHub](github.md)
-  - [GitLab](gitlab.md)
-- Configure
-
-   
-  - [Tools](tools.md)
-  - [Rules](rules.md)
-  - [Agents](agents.md)
-  - [Models](models.md)
-  - [Themes](themes.md)
-  - [Keybinds](keybinds.md)
-  - [Commands](commands.md)
-  - [Formatters](formatters.md)
-  - [Permissions](permissions.md)
-  - [LSP Servers](lsp.md)
-  - [MCP servers](mcp-servers.md)
-  - [ACP Support](acp.md)
-  - [Agent Skills](skills.md)
-  - [Custom Tools](custom-tools.md)
-- Develop
-
-   
-  - [SDK](sdk.md)
-  - [Server](server.md)
-  - [Plugins](plugins.md)
-  - [Ecosystem](ecosystem.md)
-
-[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
-
-  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
-
-On this page
-
-- [Overview](#_top)
-- [Initialize](#initialize)
-- [Example](#example)
-- [Types](#types) 
-  - [Project](#project)
-  - [Global](#global)
-  - [Claude Code Compatibility](#claude-code-compatibility)
-- [Precedence](#precedence)
-- [Custom Instructions](#custom-instructions)
-- [Referencing External Files](#referencing-external-files) 
-  - [Using opencode.json](#using-opencodejson)
-  - [Manual Instructions in AGENTS.md](#manual-instructions-in-agentsmd)
-
-## On this page
-
-- [Overview](#_top)
-- [Initialize](#initialize)
-- [Example](#example)
-- [Types](#types) 
-  - [Project](#project)
-  - [Global](#global)
-  - [Claude Code Compatibility](#claude-code-compatibility)
-- [Precedence](#precedence)
-- [Custom Instructions](#custom-instructions)
-- [Referencing External Files](#referencing-external-files) 
-  - [Using opencode.json](#using-opencodejson)
-  - [Manual Instructions in AGENTS.md](#manual-instructions-in-agentsmd)
+[Skip to content](#%5Ftop) 
 
 # Rules
 
 Set custom instructions for opencode.
 
-You can provide custom instructions to opencode by creating an `AGENTS.md` file. This is similar to Cursorâs rules. It contains instructions that will be included in the LLMâs context to customize its behavior for your specific project.
+You can provide custom instructions to opencode by creating an `AGENTS.md` file. This is similar to Cursor’s rules. It contains instructions that will be included in the LLM’s context to customize its behavior for your specific project.
 
 ---
 
@@ -102,17 +25,17 @@ To create a new `AGENTS.md` file, you can run the `/init` command in opencode.
 
 Tip
 
-You should commit your projectâs `AGENTS.md` file to Git.
+You should commit your project’s `AGENTS.md` file to Git.
 
 `/init` scans the important files in your repo, may ask a couple of targeted questions when the codebase cannot answer them, and then creates or updates `AGENTS.md` with concise project-specific guidance.
 
 It focuses on the things future agent sessions are most likely to need:
 
-- build, lint, and test commands
-- command order and focused verification steps when they matter
-- architecture and repo structure that are not obvious from filenames alone
-- project-specific conventions, setup quirks, and operational gotchas
-- references to existing instruction sources like Cursor or Copilot rules
+* build, lint, and test commands
+* command order and focused verification steps when they matter
+* architecture and repo structure that are not obvious from filenames alone
+* project-specific conventions, setup quirks, and operational gotchas
+* references to existing instruction sources like Cursor or Copilot rules
 
 If you already have an `AGENTS.md`, `/init` will improve it in place instead of blindly replacing it.
 
@@ -120,60 +43,46 @@ If you already have an `AGENTS.md`, `/init` will improve it in place instead of 
 
 ## [Example](#example)
 
-You can also just create this file manually. Hereâs an example of some things you can put into an `AGENTS.md` file.
+You can also just create this file manually. Here’s an example of some things you can put into an `AGENTS.md` file.
 
 AGENTS.md
 
 ```
-# SST v3 Monorepo Project
 
+# SST v3 Monorepo Project
 
 
 This is an SST v3 monorepo with TypeScript. The project uses bun workspaces for package management.
 
 
-
 ## Project Structure
-
 
 
 - `packages/` - Contains all workspace packages (functions, core, web, etc.)
 
-
-
 - `infra/` - Infrastructure definitions split by service (storage.ts, api.ts, web.ts)
 
-
-
 - `sst.config.ts` - Main SST configuration with dynamic imports
-
 
 
 ## Code Standards
 
 
-
 - Use TypeScript with strict mode enabled
-
-
 
 - Shared code goes in `packages/core/` with proper exports configuration
 
-
-
 - Functions go in `packages/functions/`
 
-
-
 - Infrastructure should be split into logical files in `infra/`
-
 
 
 ## Monorepo Conventions
 
 
-
 - Import shared modules using workspace names: `@my-app/core/example`
+
+
 ```
 
 We are adding project-specific instructions here and this will be shared across your team.
@@ -192,30 +101,29 @@ Place an `AGENTS.md` in your project root for project-specific rules. These only
 
 You can also have global rules in a `~/.config/opencode/AGENTS.md` file. This gets applied across all opencode sessions.
 
-Since this isnât committed to Git or shared with your team, we recommend using this to specify any personal rules that the LLM should follow.
+Since this isn’t committed to Git or shared with your team, we recommend using this to specify any personal rules that the LLM should follow.
 
 ### [Claude Code Compatibility](#claude-code-compatibility)
 
-For users migrating from Claude Code, OpenCode supports Claude Codeâs file conventions as fallbacks:
+For users migrating from Claude Code, OpenCode supports Claude Code’s file conventions as fallbacks:
 
-- **Project rules**: `CLAUDE.md` in your project directory (used if no `AGENTS.md` exists)
-- **Global rules**: `~/.claude/CLAUDE.md` (used if no `~/.config/opencode/AGENTS.md` exists)
-- **Skills**: `~/.claude/skills/` â see [Agent Skills](skills.md) for details
+* **Project rules**: `CLAUDE.md` in your project directory (used if no `AGENTS.md` exists)
+* **Global rules**: `~/.claude/CLAUDE.md` (used if no `~/.config/opencode/AGENTS.md` exists)
+* **Skills**: `~/.claude/skills/` — see [Agent Skills](skills.md) for details
 
 To disable Claude Code compatibility, set one of these environment variables:
 
 Terminal window
 
 ```
+
 export OPENCODE_DISABLE_CLAUDE_CODE=1        # Disable all .claude support
-
-
 
 export OPENCODE_DISABLE_CLAUDE_CODE_PROMPT=1 # Disable only ~/.claude/CLAUDE.md
 
-
-
 export OPENCODE_DISABLE_CLAUDE_CODE_SKILLS=1 # Disable only .claude/skills
+
+
 ```
 
 ---
@@ -241,19 +149,16 @@ Example:
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
-
-"$schema": "https://opencode.ai/config.json",
-
-
-
-"instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md"]
-
-
+  "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md"]
 
 }
+
+
 ```
 
 You can also use remote URLs to load instructions from the web.
@@ -261,19 +166,16 @@ You can also use remote URLs to load instructions from the web.
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
-
-"$schema": "https://opencode.ai/config.json",
-
-
-
-"instructions": ["https://raw.githubusercontent.com/my-org/shared-rules/main/style.md"]
-
-
+  "instructions": ["https://raw.githubusercontent.com/my-org/shared-rules/main/style.md"]
 
 }
+
+
 ```
 
 Remote instructions are fetched with a 5 second timeout.
@@ -284,7 +186,7 @@ All instruction files are combined with your `AGENTS.md` files.
 
 ## [Referencing External Files](#referencing-external-files)
 
-While opencode doesnât automatically parse file references in `AGENTS.md`, you can achieve similar functionality in two ways:
+While opencode doesn’t automatically parse file references in `AGENTS.md`, you can achieve similar functionality in two ways:
 
 ### [Using opencode.json](#using-opencodejson)
 
@@ -293,96 +195,72 @@ The recommended approach is to use the `instructions` field in `opencode.json`:
 opencode.json
 
 ```
+
 {
 
+  "$schema": "https://opencode.ai/config.json",
 
-
-"$schema": "https://opencode.ai/config.json",
-
-
-
-"instructions": ["docs/development-standards.md", "test/testing-guidelines.md", "packages/*/AGENTS.md"]
-
-
+  "instructions": ["docs/development-standards.md", "test/testing-guidelines.md", "packages/*/AGENTS.md"]
 
 }
+
+
 ```
 
 ### [Manual Instructions in AGENTS.md](#manual-instructions-in-agentsmd)
 
-You can teach opencode to read external files by providing explicit instructions in your `AGENTS.md`. Hereâs a practical example:
+You can teach opencode to read external files by providing explicit instructions in your `AGENTS.md`. Here’s a practical example:
 
 AGENTS.md
 
 ```
-# TypeScript Project Rules
 
+# TypeScript Project Rules
 
 
 ## External File Loading
 
 
-
 CRITICAL: When you encounter a file reference (e.g., @rules/general.md), use your Read tool to load it on a need-to-know basis. They're relevant to the SPECIFIC task at hand.
-
 
 
 Instructions:
 
 
-
 - Do NOT preemptively load all references - use lazy loading based on actual need
-
-
 
 - When loaded, treat content as mandatory instructions that override defaults
 
-
-
 - Follow references recursively when needed
-
 
 
 ## Development Guidelines
 
 
-
 For TypeScript code style and best practices: @docs/typescript-guidelines.md
-
-
 
 For React component architecture and hooks patterns: @docs/react-patterns.md
 
-
-
 For REST API design and error handling: @docs/api-standards.md
 
-
-
 For testing strategies and coverage requirements: @test/testing-guidelines.md
-
 
 
 ## General Guidelines
 
 
-
 Read the following file immediately as it's relevant to all workflows: @rules/general-guidelines.md.
+
+
 ```
 
 This approach allows you to:
 
-- Create modular, reusable rule files
-- Share rules across projects via symlinks or git submodules
-- Keep AGENTS.md concise while referencing detailed guidelines
-- Ensure opencode loads files only when needed for the specific task
+* Create modular, reusable rule files
+* Share rules across projects via symlinks or git submodules
+* Keep AGENTS.md concise while referencing detailed guidelines
+* Ensure opencode loads files only when needed for the specific task
 
 Tip
 
 For monorepos or projects with shared standards, using `opencode.json` with glob patterns (like `packages/*/AGENTS.md`) is more maintainable than manual instructions.
-
-[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/rules.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
-
-© [Anomaly](https://anoma.ly)
-
-Last updated: May 13, 2026
