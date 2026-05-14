@@ -1,15 +1,73 @@
-Title: IDE
+[Skip to content](#_top)
 
-URL Source: https://opencode.ai/docs/ide
+[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
 
-Markdown Content:
----
-title: IDE
-description: The OpenCode extension for VS Code, Cursor, and other IDEs
-image: https://social-cards.sst.dev/opencode-docs/SURF.png?desc=The%20OpenCode%20extension%20for%20VS%20Code%2C%20Cursor%2C%20and%20other%20IDEs
----
+[app.header.home](/)[app.header.docs](../docs.md)
 
-[Skip to content](#%5Ftop) 
+Search  `CtrlK`
+
+Cancel
+
+* [Intro](../docs.md)
+* [Config](config.md)
+* [Providers](providers.md)
+* [Network](network.md)
+* [Enterprise](enterprise.md)
+* [Troubleshooting](troubleshooting.md)
+* [Windows](windows-wsl.md)
+* Usage
+
+  + [Go](go.md)
+  + [TUI](tui.md)
+  + [CLI](cli.md)
+  + [Web](web.md)
+  + [IDE](ide.md)
+  + [Zen](zen.md)
+  + [Share](share.md)
+  + [GitHub](github.md)
+  + [GitLab](gitlab.md)
+* Configure
+
+  + [Tools](tools.md)
+  + [Rules](rules.md)
+  + [Agents](agents.md)
+  + [Models](models.md)
+  + [Themes](themes.md)
+  + [Keybinds](keybinds.md)
+  + [Commands](commands.md)
+  + [Formatters](formatters.md)
+  + [Permissions](permissions.md)
+  + [LSP Servers](lsp.md)
+  + [MCP servers](mcp-servers.md)
+  + [ACP Support](acp.md)
+  + [Agent Skills](skills.md)
+  + [Custom Tools](custom-tools.md)
+* Develop
+
+  + [SDK](sdk.md)
+  + [Server](server.md)
+  + [Plugins](plugins.md)
+  + [Ecosystem](ecosystem.md)
+
+[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
+
+  Select theme   DarkLightAuto      Select language   English脴搂脵聞脴鹿脴卤脴篓脵聤脴漏BosanskiDanskDeutschEspa脙卤olFran脙搂aisItaliano忙聴楼忙聹卢猫陋聻铆聲聹锚碌颅矛聳麓Norsk Bokm脙楼lPolskiPortugu脙陋s (Brasil)脨聽脩聝脩聛脩聛脨潞脨赂脨鹿脿鹿聞脿赂聴脿赂垄T脙录rk脙搂e莽庐聙盲陆聯盲赂颅忙聳聡莽鹿聛茅芦聰盲赂颅忙聳聡
+
+On this page
+
+* [Overview](#_top)
+* [Usage](#usage)
+* [Installation](#installation)
+  + [Manual Install](#manual-install)
+  + [Troubleshooting](#troubleshooting)
+
+## On this page
+
+* [Overview](#_top)
+* [Usage](#usage)
+* [Installation](#installation)
+  + [Manual Install](#manual-install)
+  + [Troubleshooting](#troubleshooting)
 
 # IDE
 
@@ -34,9 +92,9 @@ To install OpenCode on VS Code and popular forks like Cursor, Windsurf, VSCodium
 
 1. Open VS Code
 2. Open the integrated terminal
-3. Run `opencode` \- the extension installs automatically
+3. Run `opencode` - the extension installs automatically
 
-If on the other hand you want to use your own IDE when you run `/editor` or `/export` from the TUI, you’ll need to set `export EDITOR="code --wait"`. [Learn more](tui.md).
+If on the other hand you want to use your own IDE when you run `/editor` or `/export` from the TUI, you芒聙聶ll need to set `export EDITOR="code --wait"`. [Learn more](tui.md).
 
 ---
 
@@ -50,11 +108,17 @@ Search for **OpenCode** in the Extension Marketplace and click **Install**.
 
 If the extension fails to install automatically:
 
-* Ensure you’re running `opencode` in the integrated terminal.
-* Confirm the CLI for your IDE is installed:  
-   * For VS Code: `code` command  
-   * For Cursor: `cursor` command  
-   * For Windsurf: `windsurf` command  
-   * For VSCodium: `codium` command  
-   * If not, run `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux) and search for “Shell Command: Install ‘code’ command in PATH” (or the equivalent for your IDE)
+* Ensure you芒聙聶re running `opencode` in the integrated terminal.
+* Confirm the CLI for your IDE is installed:
+  + For VS Code: `code` command
+  + For Cursor: `cursor` command
+  + For Windsurf: `windsurf` command
+  + For VSCodium: `codium` command
+  + If not, run `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux) and search for 芒聙聹Shell Command: Install 芒聙聵code芒聙聶 command in PATH芒聙聺 (or the equivalent for your IDE)
 * Ensure VS Code has permission to install extensions
+
+[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/ide.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   English脴搂脵聞脴鹿脴卤脴篓脵聤脴漏BosanskiDanskDeutschEspa脙卤olFran脙搂aisItaliano忙聴楼忙聹卢猫陋聻铆聲聹锚碌颅矛聳麓Norsk Bokm脙楼lPolskiPortugu脙陋s (Brasil)脨聽脩聝脩聛脩聛脨潞脨赂脨鹿脿鹿聞脿赂聴脿赂垄T脙录rk脙搂e莽庐聙盲陆聯盲赂颅忙聳聡莽鹿聛茅芦聰盲赂颅忙聳聡
+
+漏 [Anomaly](https://anoma.ly)
+
+Last updated: May 13, 2026

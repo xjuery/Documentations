@@ -1,15 +1,103 @@
-Title: Tools
+[Skip to content](#_top)
 
-URL Source: https://opencode.ai/docs/tools
+[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
 
-Markdown Content:
----
-title: Tools
-description: Manage the tools an LLM can use.
-image: https://social-cards.sst.dev/opencode-docs/VG9vbHM%3D.png?desc=Manage%20the%20tools%20an%20LLM%20can%20use.
----
+[app.header.home](/)[app.header.docs](../docs.md)
 
-[Skip to content](#%5Ftop) 
+Search  `CtrlK`
+
+Cancel
+
+* [Intro](../docs.md)
+* [Config](config.md)
+* [Providers](providers.md)
+* [Network](network.md)
+* [Enterprise](enterprise.md)
+* [Troubleshooting](troubleshooting.md)
+* [Windows](windows-wsl.md)
+* Usage
+
+  + [Go](go.md)
+  + [TUI](tui.md)
+  + [CLI](cli.md)
+  + [Web](web.md)
+  + [IDE](ide.md)
+  + [Zen](zen.md)
+  + [Share](share.md)
+  + [GitHub](github.md)
+  + [GitLab](gitlab.md)
+* Configure
+
+  + [Tools](tools.md)
+  + [Rules](rules.md)
+  + [Agents](agents.md)
+  + [Models](models.md)
+  + [Themes](themes.md)
+  + [Keybinds](keybinds.md)
+  + [Commands](commands.md)
+  + [Formatters](formatters.md)
+  + [Permissions](permissions.md)
+  + [LSP Servers](lsp.md)
+  + [MCP servers](mcp-servers.md)
+  + [ACP Support](acp.md)
+  + [Agent Skills](skills.md)
+  + [Custom Tools](custom-tools.md)
+* Develop
+
+  + [SDK](sdk.md)
+  + [Server](server.md)
+  + [Plugins](plugins.md)
+  + [Ecosystem](ecosystem.md)
+
+[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
+
+  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+On this page
+
+* [Overview](#_top)
+* [Configure](#configure)
+* [Built-in](#built-in)
+  + [bash](#bash)
+  + [edit](#edit)
+  + [write](#write)
+  + [read](#read)
+  + [grep](#grep)
+  + [glob](#glob)
+  + [lsp (experimental)](#lsp-experimental)
+  + [apply\_patch](#apply_patch)
+  + [skill](#skill)
+  + [todowrite](#todowrite)
+  + [webfetch](#webfetch)
+  + [websearch](#websearch)
+  + [question](#question)
+* [Custom tools](#custom-tools)
+* [MCP servers](#mcp-servers)
+* [Internals](#internals)
+  + [Ignore patterns](#ignore-patterns)
+
+## On this page
+
+* [Overview](#_top)
+* [Configure](#configure)
+* [Built-in](#built-in)
+  + [bash](#bash)
+  + [edit](#edit)
+  + [write](#write)
+  + [read](#read)
+  + [grep](#grep)
+  + [glob](#glob)
+  + [lsp (experimental)](#lsp-experimental)
+  + [apply\_patch](#apply_patch)
+  + [skill](#skill)
+  + [todowrite](#todowrite)
+  + [webfetch](#webfetch)
+  + [websearch](#websearch)
+  + [question](#question)
+* [Custom tools](#custom-tools)
+* [MCP servers](#mcp-servers)
+* [Internals](#internals)
+  + [Ignore patterns](#ignore-patterns)
 
 # Tools
 
@@ -17,7 +105,7 @@ Manage the tools an LLM can use.
 
 Tools allow the LLM to perform actions in your codebase. OpenCode comes with a set of built-in tools, but you can extend it with [custom tools](custom-tools.md) or [MCP servers](mcp-servers.md).
 
-By default, all tools are **enabled** and don’t need permission to run. You can control tool behavior through [permissions](permissions.md).
+By default, all tools are **enabled** and donât need permission to run. You can control tool behavior through [permissions](permissions.md).
 
 ---
 
@@ -28,24 +116,21 @@ Use the `permission` field to control tool behavior. You can allow, deny, or req
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "edit": "deny",
+"edit": "deny",
 
-    "bash": "ask",
+"bash": "ask",
 
-    "webfetch": "allow"
-
-  }
+"webfetch": "allow"
 
 }
 
-
+}
 ```
 
 You can also use wildcards to control multiple tools at once. For example, to require approval for all tools from an MCP server:
@@ -53,20 +138,17 @@ You can also use wildcards to control multiple tools at once. For example, to re
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "mymcp_*": "ask"
-
-  }
+"mymcp_*": "ask"
 
 }
 
-
+}
 ```
 
 [Learn more](permissions.md) about configuring permissions.
@@ -86,20 +168,17 @@ Execute shell commands in your project environment.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "bash": "allow"
-
-  }
+"bash": "allow"
 
 }
 
-
+}
 ```
 
 This tool allows the LLM to run terminal commands like `npm install`, `git status`, or any other shell command.
@@ -113,23 +192,20 @@ Modify existing files using exact string replacements.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "edit": "allow"
-
-  }
+"edit": "allow"
 
 }
 
-
+}
 ```
 
-This tool performs precise edits to files by replacing exact text matches. It’s the primary way the LLM modifies code.
+This tool performs precise edits to files by replacing exact text matches. Itâs the primary way the LLM modifies code.
 
 ---
 
@@ -140,20 +216,17 @@ Create new files or overwrite existing ones.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "edit": "allow"
-
-  }
+"edit": "allow"
 
 }
 
-
+}
 ```
 
 Use this to allow the LLM to create new files. It will overwrite existing files if they already exist.
@@ -171,20 +244,17 @@ Read file contents from your codebase.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "read": "allow"
-
-  }
+"read": "allow"
 
 }
 
-
+}
 ```
 
 This tool reads files and returns their contents. It supports reading specific line ranges for large files.
@@ -198,20 +268,17 @@ Search file contents using regular expressions.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "grep": "allow"
-
-  }
+"grep": "allow"
 
 }
 
-
+}
 ```
 
 Fast content search across your codebase. Supports full regex syntax and file pattern filtering.
@@ -225,20 +292,17 @@ Find files by pattern matching.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "glob": "allow"
-
-  }
+"glob": "allow"
 
 }
 
-
+}
 ```
 
 Search for files using glob patterns like `**/*.js` or `src/**/*.ts`. Returns matching file paths sorted by modification time.
@@ -256,20 +320,17 @@ This tool is only available when `OPENCODE_EXPERIMENTAL_LSP_TOOL=true` (or `OPEN
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "lsp": "allow"
-
-  }
+"lsp": "allow"
 
 }
 
-
+}
 ```
 
 Supported operations include `goToDefinition`, `findReferences`, `hover`, `documentSymbol`, `workspaceSymbol`, `goToImplementation`, `prepareCallHierarchy`, `incomingCalls`, and `outgoingCalls`.
@@ -278,27 +339,24 @@ To configure which LSP servers are available for your project, see [LSP Servers]
 
 ---
 
-### [apply\_patch](#apply%5Fpatch)
+### [apply\_patch](#apply_patch)
 
 Apply patches to files.
 
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "edit": "allow"
-
-  }
+"edit": "allow"
 
 }
 
-
+}
 ```
 
 This tool applies patch files to your codebase. Useful for applying diffs and patches from various sources.
@@ -320,20 +378,17 @@ Load a [skill](skills.md) (a `SKILL.md` file) and return its content in the conv
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "skill": "allow"
-
-  }
+"skill": "allow"
 
 }
 
-
+}
 ```
 
 ---
@@ -345,20 +400,17 @@ Manage todo lists during coding sessions.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "todowrite": "allow"
-
-  }
+"todowrite": "allow"
 
 }
 
-
+}
 ```
 
 Creates and updates task lists to track progress during complex operations. The LLM uses this to organize multi-step tasks.
@@ -376,20 +428,17 @@ Fetch web content.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "webfetch": "allow"
-
-  }
+"webfetch": "allow"
 
 }
 
-
+}
 ```
 
 Allows the LLM to fetch and read web pages. Useful for looking up documentation or researching online resources.
@@ -409,34 +458,28 @@ To enable when launching OpenCode:
 Terminal window
 
 ```
-
 OPENCODE_ENABLE_EXA=1 opencode
-
-
 ```
 
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "websearch": "allow"
-
-  }
+"websearch": "allow"
 
 }
 
-
+}
 ```
 
 Performs web searches using Exa AI to find relevant information online. Useful for researching topics, finding current events, or gathering information beyond the training data cutoff.
 
-No API key is required — the tool connects directly to Exa AI’s hosted MCP service without authentication.
+No API key is required â the tool connects directly to Exa AIâs hosted MCP service without authentication.
 
 Tip
 
@@ -451,23 +494,20 @@ Ask the user questions during execution.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "permission": {
+"permission": {
 
-    "question": "allow"
-
-  }
+"question": "allow"
 
 }
 
-
+}
 ```
 
-This tool allows the LLM to ask the user questions during a task. It’s useful for:
+This tool allows the LLM to ask the user questions during a task. Itâs useful for:
 
 * Gathering user preferences or requirements
 * Clarifying ambiguous instructions
@@ -507,14 +547,17 @@ To include files that would normally be ignored, create a `.ignore` file in your
 .ignore
 
 ```
-
 !node_modules/
 
 !dist/
 
 !build/
-
-
 ```
 
-For example, this `.ignore` file allows ripgrep to search within `node_modules/`, `dist/`, and `build/` directories even if they’re listed in `.gitignore`.
+For example, this `.ignore` file allows ripgrep to search within `node_modules/`, `dist/`, and `build/` directories even if theyâre listed in `.gitignore`.
+
+[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/tools.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+© [Anomaly](https://anoma.ly)
+
+Last updated: May 13, 2026

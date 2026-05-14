@@ -1,15 +1,87 @@
-Title: Themes
+[Skip to content](#_top)
 
-URL Source: https://opencode.ai/docs/themes
+[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
 
-Markdown Content:
----
-title: Themes
-description: Select a built-in theme or define your own.
-image: https://social-cards.sst.dev/opencode-docs/VGhlbWVz.png?desc=Select%20a%20built-in%20theme%20or%20define%20your%20own.
----
+[app.header.home](/)[app.header.docs](../docs.md)
 
-[Skip to content](#%5Ftop) 
+Search  `CtrlK`
+
+Cancel
+
+* [Intro](../docs.md)
+* [Config](config.md)
+* [Providers](providers.md)
+* [Network](network.md)
+* [Enterprise](enterprise.md)
+* [Troubleshooting](troubleshooting.md)
+* [Windows](windows-wsl.md)
+* Usage
+
+  + [Go](go.md)
+  + [TUI](tui.md)
+  + [CLI](cli.md)
+  + [Web](web.md)
+  + [IDE](ide.md)
+  + [Zen](zen.md)
+  + [Share](share.md)
+  + [GitHub](github.md)
+  + [GitLab](gitlab.md)
+* Configure
+
+  + [Tools](tools.md)
+  + [Rules](rules.md)
+  + [Agents](agents.md)
+  + [Models](models.md)
+  + [Themes](themes.md)
+  + [Keybinds](keybinds.md)
+  + [Commands](commands.md)
+  + [Formatters](formatters.md)
+  + [Permissions](permissions.md)
+  + [LSP Servers](lsp.md)
+  + [MCP servers](mcp-servers.md)
+  + [ACP Support](acp.md)
+  + [Agent Skills](skills.md)
+  + [Custom Tools](custom-tools.md)
+* Develop
+
+  + [SDK](sdk.md)
+  + [Server](server.md)
+  + [Plugins](plugins.md)
+  + [Ecosystem](ecosystem.md)
+
+[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
+
+  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+On this page
+
+* [Overview](#_top)
+* [Terminal requirements](#terminal-requirements)
+* [Built-in themes](#built-in-themes)
+* [System theme](#system-theme)
+* [Using a theme](#using-a-theme)
+* [Custom themes](#custom-themes)
+  + [Hierarchy](#hierarchy)
+  + [Creating a theme](#creating-a-theme)
+  + [JSON format](#json-format)
+  + [Color definitions](#color-definitions)
+  + [Terminal defaults](#terminal-defaults)
+  + [Example](#example)
+
+## On this page
+
+* [Overview](#_top)
+* [Terminal requirements](#terminal-requirements)
+* [Built-in themes](#built-in-themes)
+* [System theme](#system-theme)
+* [Using a theme](#using-a-theme)
+* [Custom themes](#custom-themes)
+  + [Hierarchy](#hierarchy)
+  + [Creating a theme](#creating-a-theme)
+  + [JSON format](#json-format)
+  + [Color definitions](#color-definitions)
+  + [Terminal defaults](#terminal-defaults)
+  + [Example](#example)
 
 # Themes
 
@@ -25,7 +97,7 @@ By default, OpenCode uses our own `opencode` theme.
 
 For themes to display correctly with their full color palette, your terminal must support **truecolor** (24-bit color). Most modern terminals support this by default, but you may need to enable it:
 
-* **Check support**: Run `echo $COLORTERM` \- it should output `truecolor` or `24bit`
+* **Check support**: Run `echo $COLORTERM` - it should output `truecolor` or `24bit`
 * **Enable truecolor**: Set the environment variable `COLORTERM=truecolor` in your shell profile
 * **Terminal compatibility**: Ensure your terminal emulator supports 24-bit color (most modern terminals like iTerm2, Alacritty, Kitty, Windows Terminal, and recent versions of GNOME Terminal do)
 
@@ -37,19 +109,19 @@ Without truecolor support, themes may appear with reduced color accuracy or fall
 
 OpenCode comes with several built-in themes.
 
-| Name                 | Description                                                                  |
-| -------------------- | ---------------------------------------------------------------------------- |
-| system               | Adapts to your terminal’s background color                                   |
-| tokyonight           | Based on the [Tokyonight](https://github.com/folke/tokyonight.nvim) theme    |
-| everforest           | Based on the [Everforest](https://github.com/sainnhe/everforest) theme       |
-| ayu                  | Based on the [Ayu](https://github.com/ayu-theme) dark theme                  |
-| catppuccin           | Based on the [Catppuccin](https://github.com/catppuccin) theme               |
-| catppuccin-macchiato | Based on the [Catppuccin](https://github.com/catppuccin) theme               |
-| gruvbox              | Based on the [Gruvbox](https://github.com/morhetz/gruvbox) theme             |
-| kanagawa             | Based on the [Kanagawa](https://github.com/rebelot/kanagawa.nvim) theme      |
-| nord                 | Based on the [Nord](https://github.com/nordtheme/nord) theme                 |
-| matrix               | Hacker-style green on black theme                                            |
-| one-dark             | Based on the [Atom One](https://github.com/Th3Whit3Wolf/one-nvim) Dark theme |
+| Name | Description |
+| --- | --- |
+| `system` | Adapts to your terminalâs background color |
+| `tokyonight` | Based on the [Tokyonight](https://github.com/folke/tokyonight.nvim) theme |
+| `everforest` | Based on the [Everforest](https://github.com/sainnhe/everforest) theme |
+| `ayu` | Based on the [Ayu](https://github.com/ayu-theme) dark theme |
+| `catppuccin` | Based on the [Catppuccin](https://github.com/catppuccin) theme |
+| `catppuccin-macchiato` | Based on the [Catppuccin](https://github.com/catppuccin) theme |
+| `gruvbox` | Based on the [Gruvbox](https://github.com/morhetz/gruvbox) theme |
+| `kanagawa` | Based on the [Kanagawa](https://github.com/rebelot/kanagawa.nvim) theme |
+| `nord` | Based on the [Nord](https://github.com/nordtheme/nord) theme |
+| `matrix` | Hacker-style green on black theme |
+| `one-dark` | Based on the [Atom One](https://github.com/Th3Whit3Wolf/one-nvim) Dark theme |
 
 And more, we are constantly adding new themes.
 
@@ -57,15 +129,15 @@ And more, we are constantly adding new themes.
 
 ## [System theme](#system-theme)
 
-The `system` theme is designed to automatically adapt to your terminal’s color scheme. Unlike traditional themes that use fixed colors, the _system_ theme:
+The `system` theme is designed to automatically adapt to your terminalâs color scheme. Unlike traditional themes that use fixed colors, the *system* theme:
 
-* **Generates gray scale**: Creates a custom gray scale based on your terminal’s background color, ensuring optimal contrast.
-* **Uses ANSI colors**: Leverages standard ANSI colors (0-15) for syntax highlighting and UI elements, which respect your terminal’s color palette.
-* **Preserves terminal defaults**: Uses `none` for text and background colors to maintain your terminal’s native appearance.
+* **Generates gray scale**: Creates a custom gray scale based on your terminalâs background color, ensuring optimal contrast.
+* **Uses ANSI colors**: Leverages standard ANSI colors (0-15) for syntax highlighting and UI elements, which respect your terminalâs color palette.
+* **Preserves terminal defaults**: Uses `none` for text and background colors to maintain your terminalâs native appearance.
 
 The system theme is for users who:
 
-* Want OpenCode to match their terminal’s appearance
+* Want OpenCode to match their terminalâs appearance
 * Use custom terminal color schemes
 * Prefer a consistent look across all terminal applications
 
@@ -78,16 +150,13 @@ You can select a theme by bringing up the theme select with the `/theme` command
 tui.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/tui.json",
+"$schema": "https://opencode.ai/tui.json",
 
-  "theme": "tokyonight"
+"theme": "tokyonight"
 
 }
-
-
 ```
 
 ---
@@ -102,10 +171,10 @@ OpenCode supports a flexible JSON-based theme system that allows users to create
 
 Themes are loaded from multiple directories in the following order where later directories override earlier ones:
 
-1. **Built-in themes** \- These are embedded in the binary
-2. **User config directory** \- Defined in `~/.config/opencode/themes/*.json` or `$XDG_CONFIG_HOME/opencode/themes/*.json`
-3. **Project root directory** \- Defined in the `<project-root>/.opencode/themes/*.json`
-4. **Current working directory** \- Defined in `./.opencode/themes/*.json`
+1. **Built-in themes** - These are embedded in the binary
+2. **User config directory** - Defined in `~/.config/opencode/themes/*.json` or `$XDG_CONFIG_HOME/opencode/themes/*.json`
+3. **Project root directory** - Defined in the `<project-root>/.opencode/themes/*.json`
+4. **Current working directory** - Defined in `./.opencode/themes/*.json`
 
 If multiple directories contain a theme with the same name, the theme from the directory with higher priority will be used.
 
@@ -120,12 +189,9 @@ For user-wide themes:
 Terminal window
 
 ```
-
 mkdir -p ~/.config/opencode/themes
 
 vim ~/.config/opencode/themes/my-theme.json
-
-
 ```
 
 And for project-specific themes.
@@ -133,12 +199,9 @@ And for project-specific themes.
 Terminal window
 
 ```
-
 mkdir -p .opencode/themes
 
 vim .opencode/themes/my-theme.json
-
-
 ```
 
 ---
@@ -151,7 +214,7 @@ Themes use a flexible JSON format with support for:
 * **ANSI colors**: `3` (0-255)
 * **Color references**: `"primary"` or custom definitions
 * **Dark/light variants**: `{"dark": "#000", "light": "#fff"}`
-* **No color**: `"none"` \- Uses the terminal’s default color or transparent
+* **No color**: `"none"` - Uses the terminalâs default color or transparent
 
 ---
 
@@ -163,466 +226,469 @@ The `defs` section is optional and it allows you to define reusable colors that 
 
 ### [Terminal defaults](#terminal-defaults)
 
-The special value `"none"` can be used for any color to inherit the terminal’s default color. This is particularly useful for creating themes that blend seamlessly with your terminal’s color scheme:
+The special value `"none"` can be used for any color to inherit the terminalâs default color. This is particularly useful for creating themes that blend seamlessly with your terminalâs color scheme:
 
-* `"text": "none"` \- Uses terminal’s default foreground color
-* `"background": "none"` \- Uses terminal’s default background color
+* `"text": "none"` - Uses terminalâs default foreground color
+* `"background": "none"` - Uses terminalâs default background color
 
 ---
 
 ### [Example](#example)
 
-Here’s an example of a custom theme:
+Hereâs an example of a custom theme:
 
 my-theme.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/theme.json",
+"$schema": "https://opencode.ai/theme.json",
 
-  "defs": {
+"defs": {
 
-    "nord0": "#2E3440",
+"nord0": "#2E3440",
 
-    "nord1": "#3B4252",
+"nord1": "#3B4252",
 
-    "nord2": "#434C5E",
+"nord2": "#434C5E",
 
-    "nord3": "#4C566A",
+"nord3": "#4C566A",
 
-    "nord4": "#D8DEE9",
+"nord4": "#D8DEE9",
 
-    "nord5": "#E5E9F0",
+"nord5": "#E5E9F0",
 
-    "nord6": "#ECEFF4",
+"nord6": "#ECEFF4",
 
-    "nord7": "#8FBCBB",
+"nord7": "#8FBCBB",
 
-    "nord8": "#88C0D0",
+"nord8": "#88C0D0",
 
-    "nord9": "#81A1C1",
+"nord9": "#81A1C1",
 
-    "nord10": "#5E81AC",
+"nord10": "#5E81AC",
 
-    "nord11": "#BF616A",
+"nord11": "#BF616A",
 
-    "nord12": "#D08770",
+"nord12": "#D08770",
 
-    "nord13": "#EBCB8B",
+"nord13": "#EBCB8B",
 
-    "nord14": "#A3BE8C",
+"nord14": "#A3BE8C",
 
-    "nord15": "#B48EAD"
+"nord15": "#B48EAD"
 
-  },
+},
 
-  "theme": {
+"theme": {
 
-    "primary": {
+"primary": {
 
-      "dark": "nord8",
+"dark": "nord8",
 
-      "light": "nord10"
+"light": "nord10"
 
-    },
+},
 
-    "secondary": {
+"secondary": {
 
-      "dark": "nord9",
+"dark": "nord9",
 
-      "light": "nord9"
+"light": "nord9"
 
-    },
+},
 
-    "accent": {
+"accent": {
 
-      "dark": "nord7",
+"dark": "nord7",
 
-      "light": "nord7"
+"light": "nord7"
 
-    },
+},
 
-    "error": {
+"error": {
 
-      "dark": "nord11",
+"dark": "nord11",
 
-      "light": "nord11"
+"light": "nord11"
 
-    },
+},
 
-    "warning": {
+"warning": {
 
-      "dark": "nord12",
+"dark": "nord12",
 
-      "light": "nord12"
+"light": "nord12"
 
-    },
+},
 
-    "success": {
+"success": {
 
-      "dark": "nord14",
+"dark": "nord14",
 
-      "light": "nord14"
+"light": "nord14"
 
-    },
+},
 
-    "info": {
+"info": {
 
-      "dark": "nord8",
+"dark": "nord8",
 
-      "light": "nord10"
+"light": "nord10"
 
-    },
+},
 
-    "text": {
+"text": {
 
-      "dark": "nord4",
+"dark": "nord4",
 
-      "light": "nord0"
+"light": "nord0"
 
-    },
+},
 
-    "textMuted": {
+"textMuted": {
 
-      "dark": "nord3",
+"dark": "nord3",
 
-      "light": "nord1"
+"light": "nord1"
 
-    },
+},
 
-    "background": {
+"background": {
 
-      "dark": "nord0",
+"dark": "nord0",
 
-      "light": "nord6"
+"light": "nord6"
 
-    },
+},
 
-    "backgroundPanel": {
+"backgroundPanel": {
 
-      "dark": "nord1",
+"dark": "nord1",
 
-      "light": "nord5"
+"light": "nord5"
 
-    },
+},
 
-    "backgroundElement": {
+"backgroundElement": {
 
-      "dark": "nord1",
+"dark": "nord1",
 
-      "light": "nord4"
+"light": "nord4"
 
-    },
+},
 
-    "border": {
+"border": {
 
-      "dark": "nord2",
+"dark": "nord2",
 
-      "light": "nord3"
+"light": "nord3"
 
-    },
+},
 
-    "borderActive": {
+"borderActive": {
 
-      "dark": "nord3",
+"dark": "nord3",
 
-      "light": "nord2"
+"light": "nord2"
 
-    },
+},
 
-    "borderSubtle": {
+"borderSubtle": {
 
-      "dark": "nord2",
+"dark": "nord2",
 
-      "light": "nord3"
+"light": "nord3"
 
-    },
+},
 
-    "diffAdded": {
+"diffAdded": {
 
-      "dark": "nord14",
+"dark": "nord14",
 
-      "light": "nord14"
+"light": "nord14"
 
-    },
+},
 
-    "diffRemoved": {
+"diffRemoved": {
 
-      "dark": "nord11",
+"dark": "nord11",
 
-      "light": "nord11"
+"light": "nord11"
 
-    },
+},
 
-    "diffContext": {
+"diffContext": {
 
-      "dark": "nord3",
+"dark": "nord3",
 
-      "light": "nord3"
+"light": "nord3"
 
-    },
+},
 
-    "diffHunkHeader": {
+"diffHunkHeader": {
 
-      "dark": "nord3",
+"dark": "nord3",
 
-      "light": "nord3"
+"light": "nord3"
 
-    },
+},
 
-    "diffHighlightAdded": {
+"diffHighlightAdded": {
 
-      "dark": "nord14",
+"dark": "nord14",
 
-      "light": "nord14"
+"light": "nord14"
 
-    },
+},
 
-    "diffHighlightRemoved": {
+"diffHighlightRemoved": {
 
-      "dark": "nord11",
+"dark": "nord11",
 
-      "light": "nord11"
+"light": "nord11"
 
-    },
+},
 
-    "diffAddedBg": {
+"diffAddedBg": {
 
-      "dark": "#3B4252",
+"dark": "#3B4252",
 
-      "light": "#E5E9F0"
+"light": "#E5E9F0"
 
-    },
+},
 
-    "diffRemovedBg": {
+"diffRemovedBg": {
 
-      "dark": "#3B4252",
+"dark": "#3B4252",
 
-      "light": "#E5E9F0"
+"light": "#E5E9F0"
 
-    },
+},
 
-    "diffContextBg": {
+"diffContextBg": {
 
-      "dark": "nord1",
+"dark": "nord1",
 
-      "light": "nord5"
+"light": "nord5"
 
-    },
+},
 
-    "diffLineNumber": {
+"diffLineNumber": {
 
-      "dark": "nord2",
+"dark": "nord2",
 
-      "light": "nord4"
+"light": "nord4"
 
-    },
+},
 
-    "diffAddedLineNumberBg": {
+"diffAddedLineNumberBg": {
 
-      "dark": "#3B4252",
+"dark": "#3B4252",
 
-      "light": "#E5E9F0"
+"light": "#E5E9F0"
 
-    },
+},
 
-    "diffRemovedLineNumberBg": {
+"diffRemovedLineNumberBg": {
 
-      "dark": "#3B4252",
+"dark": "#3B4252",
 
-      "light": "#E5E9F0"
+"light": "#E5E9F0"
 
-    },
+},
 
-    "markdownText": {
+"markdownText": {
 
-      "dark": "nord4",
+"dark": "nord4",
 
-      "light": "nord0"
+"light": "nord0"
 
-    },
+},
 
-    "markdownHeading": {
+"markdownHeading": {
 
-      "dark": "nord8",
+"dark": "nord8",
 
-      "light": "nord10"
+"light": "nord10"
 
-    },
+},
 
-    "markdownLink": {
+"markdownLink": {
 
-      "dark": "nord9",
+"dark": "nord9",
 
-      "light": "nord9"
+"light": "nord9"
 
-    },
+},
 
-    "markdownLinkText": {
+"markdownLinkText": {
 
-      "dark": "nord7",
+"dark": "nord7",
 
-      "light": "nord7"
+"light": "nord7"
 
-    },
+},
 
-    "markdownCode": {
+"markdownCode": {
 
-      "dark": "nord14",
+"dark": "nord14",
 
-      "light": "nord14"
+"light": "nord14"
 
-    },
+},
 
-    "markdownBlockQuote": {
+"markdownBlockQuote": {
 
-      "dark": "nord3",
+"dark": "nord3",
 
-      "light": "nord3"
+"light": "nord3"
 
-    },
+},
 
-    "markdownEmph": {
+"markdownEmph": {
 
-      "dark": "nord12",
+"dark": "nord12",
 
-      "light": "nord12"
+"light": "nord12"
 
-    },
+},
 
-    "markdownStrong": {
+"markdownStrong": {
 
-      "dark": "nord13",
+"dark": "nord13",
 
-      "light": "nord13"
+"light": "nord13"
 
-    },
+},
 
-    "markdownHorizontalRule": {
+"markdownHorizontalRule": {
 
-      "dark": "nord3",
+"dark": "nord3",
 
-      "light": "nord3"
+"light": "nord3"
 
-    },
+},
 
-    "markdownListItem": {
+"markdownListItem": {
 
-      "dark": "nord8",
+"dark": "nord8",
 
-      "light": "nord10"
+"light": "nord10"
 
-    },
+},
 
-    "markdownListEnumeration": {
+"markdownListEnumeration": {
 
-      "dark": "nord7",
+"dark": "nord7",
 
-      "light": "nord7"
+"light": "nord7"
 
-    },
+},
 
-    "markdownImage": {
+"markdownImage": {
 
-      "dark": "nord9",
+"dark": "nord9",
 
-      "light": "nord9"
+"light": "nord9"
 
-    },
+},
 
-    "markdownImageText": {
+"markdownImageText": {
 
-      "dark": "nord7",
+"dark": "nord7",
 
-      "light": "nord7"
+"light": "nord7"
 
-    },
+},
 
-    "markdownCodeBlock": {
+"markdownCodeBlock": {
 
-      "dark": "nord4",
+"dark": "nord4",
 
-      "light": "nord0"
+"light": "nord0"
 
-    },
+},
 
-    "syntaxComment": {
+"syntaxComment": {
 
-      "dark": "nord3",
+"dark": "nord3",
 
-      "light": "nord3"
+"light": "nord3"
 
-    },
+},
 
-    "syntaxKeyword": {
+"syntaxKeyword": {
 
-      "dark": "nord9",
+"dark": "nord9",
 
-      "light": "nord9"
+"light": "nord9"
 
-    },
+},
 
-    "syntaxFunction": {
+"syntaxFunction": {
 
-      "dark": "nord8",
+"dark": "nord8",
 
-      "light": "nord8"
+"light": "nord8"
 
-    },
+},
 
-    "syntaxVariable": {
+"syntaxVariable": {
 
-      "dark": "nord7",
+"dark": "nord7",
 
-      "light": "nord7"
+"light": "nord7"
 
-    },
+},
 
-    "syntaxString": {
+"syntaxString": {
 
-      "dark": "nord14",
+"dark": "nord14",
 
-      "light": "nord14"
+"light": "nord14"
 
-    },
+},
 
-    "syntaxNumber": {
+"syntaxNumber": {
 
-      "dark": "nord15",
+"dark": "nord15",
 
-      "light": "nord15"
+"light": "nord15"
 
-    },
+},
 
-    "syntaxType": {
+"syntaxType": {
 
-      "dark": "nord7",
+"dark": "nord7",
 
-      "light": "nord7"
+"light": "nord7"
 
-    },
+},
 
-    "syntaxOperator": {
+"syntaxOperator": {
 
-      "dark": "nord9",
+"dark": "nord9",
 
-      "light": "nord9"
+"light": "nord9"
 
-    },
+},
 
-    "syntaxPunctuation": {
+"syntaxPunctuation": {
 
-      "dark": "nord4",
+"dark": "nord4",
 
-      "light": "nord0"
-
-    }
-
-  }
+"light": "nord0"
 
 }
 
+}
 
+}
 ```
+
+[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/themes.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+© [Anomaly](https://anoma.ly)
+
+Last updated: May 13, 2026

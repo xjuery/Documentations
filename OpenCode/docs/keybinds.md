@@ -1,15 +1,77 @@
-Title: Keybinds
+[Skip to content](#_top)
 
-URL Source: https://opencode.ai/docs/keybinds
+[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
 
-Markdown Content:
----
-title: Keybinds
-description: Customize your keybinds.
-image: https://social-cards.sst.dev/opencode-docs/S2V5YmluZHM%3D.png?desc=Customize%20your%20keybinds.
----
+[app.header.home](/)[app.header.docs](../docs.md)
 
-[Skip to content](#%5Ftop) 
+Search  `CtrlK`
+
+Cancel
+
+* [Intro](../docs.md)
+* [Config](config.md)
+* [Providers](providers.md)
+* [Network](network.md)
+* [Enterprise](enterprise.md)
+* [Troubleshooting](troubleshooting.md)
+* [Windows](windows-wsl.md)
+* Usage
+
+  + [Go](go.md)
+  + [TUI](tui.md)
+  + [CLI](cli.md)
+  + [Web](web.md)
+  + [IDE](ide.md)
+  + [Zen](zen.md)
+  + [Share](share.md)
+  + [GitHub](github.md)
+  + [GitLab](gitlab.md)
+* Configure
+
+  + [Tools](tools.md)
+  + [Rules](rules.md)
+  + [Agents](agents.md)
+  + [Models](models.md)
+  + [Themes](themes.md)
+  + [Keybinds](keybinds.md)
+  + [Commands](commands.md)
+  + [Formatters](formatters.md)
+  + [Permissions](permissions.md)
+  + [LSP Servers](lsp.md)
+  + [MCP servers](mcp-servers.md)
+  + [ACP Support](acp.md)
+  + [Agent Skills](skills.md)
+  + [Custom Tools](custom-tools.md)
+* Develop
+
+  + [SDK](sdk.md)
+  + [Server](server.md)
+  + [Plugins](plugins.md)
+  + [Ecosystem](ecosystem.md)
+
+[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
+
+  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+On this page
+
+* [Overview](#_top)
+* [Leader Key](#leader-key)
+* [Binding Values](#binding-values)
+* [Disable Keybind](#disable-keybind)
+* [Desktop Prompt Shortcuts](#desktop-prompt-shortcuts)
+* [Shift+Enter](#shiftenter)
+  + [Windows Terminal](#windows-terminal)
+
+## On this page
+
+* [Overview](#_top)
+* [Leader Key](#leader-key)
+* [Binding Values](#binding-values)
+* [Disable Keybind](#disable-keybind)
+* [Desktop Prompt Shortcuts](#desktop-prompt-shortcuts)
+* [Shift+Enter](#shiftenter)
+  + [Windows Terminal](#windows-terminal)
 
 # Keybinds
 
@@ -20,335 +82,323 @@ OpenCode has a list of keybinds that you can customize through `tui.json`.
 tui.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/tui.json",
+"$schema": "https://opencode.ai/tui.json",
 
-  "leader_timeout": 2000,
+"leader_timeout": 2000,
 
-  "keybinds": {
+"keybinds": {
 
-    "leader": "ctrl+x",
+"leader": "ctrl+x",
 
-    "app_exit": "ctrl+c,ctrl+d,<leader>q",
+"app_exit": "ctrl+c,ctrl+d,<leader>q",
 
-    "app_debug": "none",
+"app_debug": "none",
 
-    "app_console": "none",
+"app_console": "none",
 
-    "app_heap_snapshot": "none",
+"app_heap_snapshot": "none",
 
-    "app_toggle_animations": "none",
+"app_toggle_animations": "none",
 
-    "app_toggle_file_context": "none",
+"app_toggle_file_context": "none",
 
-    "app_toggle_diffwrap": "none",
+"app_toggle_diffwrap": "none",
 
-    "app_toggle_paste_summary": "none",
+"app_toggle_paste_summary": "none",
 
-    "app_toggle_session_directory_filter": "none",
+"app_toggle_session_directory_filter": "none",
 
-    "command_list": "ctrl+p",
+"command_list": "ctrl+p",
 
-    "help_show": "none",
+"help_show": "none",
 
-    "docs_open": "none",
+"docs_open": "none",
 
+"editor_open": "<leader>e",
 
-    "editor_open": "<leader>e",
+"theme_list": "<leader>t",
 
-    "theme_list": "<leader>t",
+"theme_switch_mode": "none",
 
-    "theme_switch_mode": "none",
+"theme_mode_lock": "none",
 
-    "theme_mode_lock": "none",
+"sidebar_toggle": "<leader>b",
 
-    "sidebar_toggle": "<leader>b",
+"scrollbar_toggle": "none",
 
-    "scrollbar_toggle": "none",
+"status_view": "<leader>s",
 
-    "status_view": "<leader>s",
+"session_export": "<leader>x",
 
+"session_copy": "none",
 
-    "session_export": "<leader>x",
+"session_new": "<leader>n",
 
-    "session_copy": "none",
+"session_list": "<leader>l",
 
-    "session_new": "<leader>n",
+"session_timeline": "<leader>g",
 
-    "session_list": "<leader>l",
+"session_fork": "none",
 
-    "session_timeline": "<leader>g",
+"session_rename": "ctrl+r",
 
-    "session_fork": "none",
+"session_delete": "ctrl+d",
 
-    "session_rename": "ctrl+r",
+"session_share": "none",
 
-    "session_delete": "ctrl+d",
+"session_unshare": "none",
 
-    "session_share": "none",
+"session_interrupt": "escape",
 
-    "session_unshare": "none",
+"session_compact": "<leader>c",
 
-    "session_interrupt": "escape",
+"session_toggle_timestamps": "none",
 
-    "session_compact": "<leader>c",
+"session_toggle_generic_tool_output": "none",
 
-    "session_toggle_timestamps": "none",
+"session_child_first": "<leader>down",
 
-    "session_toggle_generic_tool_output": "none",
+"session_child_cycle": "right",
 
-    "session_child_first": "<leader>down",
+"session_child_cycle_reverse": "left",
 
-    "session_child_cycle": "right",
+"session_parent": "up",
 
-    "session_child_cycle_reverse": "left",
+"stash_delete": "ctrl+d",
 
-    "session_parent": "up",
+"model_provider_list": "ctrl+a",
 
+"model_favorite_toggle": "ctrl+f",
 
-    "stash_delete": "ctrl+d",
+"model_list": "<leader>m",
 
-    "model_provider_list": "ctrl+a",
+"model_cycle_recent": "f2",
 
-    "model_favorite_toggle": "ctrl+f",
+"model_cycle_recent_reverse": "shift+f2",
 
-    "model_list": "<leader>m",
+"model_cycle_favorite": "none",
 
-    "model_cycle_recent": "f2",
+"model_cycle_favorite_reverse": "none",
 
-    "model_cycle_recent_reverse": "shift+f2",
+"mcp_list": "none",
 
-    "model_cycle_favorite": "none",
+"provider_connect": "none",
 
-    "model_cycle_favorite_reverse": "none",
+"console_org_switch": "none",
 
-    "mcp_list": "none",
+"agent_list": "<leader>a",
 
-    "provider_connect": "none",
+"agent_cycle": "tab",
 
-    "console_org_switch": "none",
+"agent_cycle_reverse": "shift+tab",
 
-    "agent_list": "<leader>a",
+"variant_cycle": "ctrl+t",
 
-    "agent_cycle": "tab",
+"variant_list": "none",
 
-    "agent_cycle_reverse": "shift+tab",
+"messages_page_up": "pageup,ctrl+alt+b",
 
-    "variant_cycle": "ctrl+t",
+"messages_page_down": "pagedown,ctrl+alt+f",
 
-    "variant_list": "none",
+"messages_line_up": "ctrl+alt+y",
 
+"messages_line_down": "ctrl+alt+e",
 
-    "messages_page_up": "pageup,ctrl+alt+b",
+"messages_half_page_up": "ctrl+alt+u",
 
-    "messages_page_down": "pagedown,ctrl+alt+f",
+"messages_half_page_down": "ctrl+alt+d",
 
-    "messages_line_up": "ctrl+alt+y",
+"messages_first": "ctrl+g,home",
 
-    "messages_line_down": "ctrl+alt+e",
+"messages_last": "ctrl+alt+g,end",
 
-    "messages_half_page_up": "ctrl+alt+u",
+"messages_next": "none",
 
-    "messages_half_page_down": "ctrl+alt+d",
+"messages_previous": "none",
 
-    "messages_first": "ctrl+g,home",
+"messages_last_user": "none",
 
-    "messages_last": "ctrl+alt+g,end",
+"messages_copy": "<leader>y",
 
-    "messages_next": "none",
+"messages_undo": "<leader>u",
 
-    "messages_previous": "none",
+"messages_redo": "<leader>r",
 
-    "messages_last_user": "none",
+"messages_toggle_conceal": "<leader>h",
 
-    "messages_copy": "<leader>y",
+"tool_details": "none",
 
-    "messages_undo": "<leader>u",
+"display_thinking": "none",
 
-    "messages_redo": "<leader>r",
+"prompt_submit": "none",
 
-    "messages_toggle_conceal": "<leader>h",
+"prompt_editor_context_clear": "none",
 
-    "tool_details": "none",
+"prompt_skills": "none",
 
-    "display_thinking": "none",
+"prompt_stash": "none",
 
+"prompt_stash_pop": "none",
 
-    "prompt_submit": "none",
+"prompt_stash_list": "none",
 
-    "prompt_editor_context_clear": "none",
+"workspace_set": "none",
 
-    "prompt_skills": "none",
+"input_clear": "ctrl+c",
 
-    "prompt_stash": "none",
+"input_paste": {
 
-    "prompt_stash_pop": "none",
+"key": "ctrl+v",
 
-    "prompt_stash_list": "none",
+"preventDefault": false
 
-    "workspace_set": "none",
+},
 
+"input_submit": "return",
 
-    "input_clear": "ctrl+c",
+"input_newline": "shift+return,ctrl+return,alt+return,ctrl+j",
 
-    "input_paste": {
+"input_move_left": "left,ctrl+b",
 
-      "key": "ctrl+v",
+"input_move_right": "right,ctrl+f",
 
-      "preventDefault": false
+"input_move_up": "up",
 
-    },
+"input_move_down": "down",
 
-    "input_submit": "return",
+"input_select_left": "shift+left",
 
-    "input_newline": "shift+return,ctrl+return,alt+return,ctrl+j",
+"input_select_right": "shift+right",
 
-    "input_move_left": "left,ctrl+b",
+"input_select_up": "shift+up",
 
-    "input_move_right": "right,ctrl+f",
+"input_select_down": "shift+down",
 
-    "input_move_up": "up",
+"input_line_home": "ctrl+a",
 
-    "input_move_down": "down",
+"input_line_end": "ctrl+e",
 
-    "input_select_left": "shift+left",
+"input_select_line_home": "ctrl+shift+a",
 
-    "input_select_right": "shift+right",
+"input_select_line_end": "ctrl+shift+e",
 
-    "input_select_up": "shift+up",
+"input_visual_line_home": "alt+a",
 
-    "input_select_down": "shift+down",
+"input_visual_line_end": "alt+e",
 
-    "input_line_home": "ctrl+a",
+"input_select_visual_line_home": "alt+shift+a",
 
-    "input_line_end": "ctrl+e",
+"input_select_visual_line_end": "alt+shift+e",
 
-    "input_select_line_home": "ctrl+shift+a",
+"input_buffer_home": "home",
 
-    "input_select_line_end": "ctrl+shift+e",
+"input_buffer_end": "end",
 
-    "input_visual_line_home": "alt+a",
+"input_select_buffer_home": "shift+home",
 
-    "input_visual_line_end": "alt+e",
+"input_select_buffer_end": "shift+end",
 
-    "input_select_visual_line_home": "alt+shift+a",
+"input_delete_line": "ctrl+shift+d",
 
-    "input_select_visual_line_end": "alt+shift+e",
+"input_delete_to_line_end": "ctrl+k",
 
-    "input_buffer_home": "home",
+"input_delete_to_line_start": "ctrl+u",
 
-    "input_buffer_end": "end",
+"input_backspace": "backspace,shift+backspace",
 
-    "input_select_buffer_home": "shift+home",
+"input_delete": "ctrl+d,delete,shift+delete",
 
-    "input_select_buffer_end": "shift+end",
+"input_undo": "ctrl+-,super+z",
 
-    "input_delete_line": "ctrl+shift+d",
+"input_redo": "ctrl+.,super+shift+z",
 
-    "input_delete_to_line_end": "ctrl+k",
+"input_word_forward": "alt+f,alt+right,ctrl+right",
 
-    "input_delete_to_line_start": "ctrl+u",
+"input_word_backward": "alt+b,alt+left,ctrl+left",
 
-    "input_backspace": "backspace,shift+backspace",
+"input_select_word_forward": "alt+shift+f,alt+shift+right",
 
-    "input_delete": "ctrl+d,delete,shift+delete",
+"input_select_word_backward": "alt+shift+b,alt+shift+left",
 
-    "input_undo": "ctrl+-,super+z",
+"input_delete_word_forward": "alt+d,alt+delete,ctrl+delete",
 
-    "input_redo": "ctrl+.,super+shift+z",
+"input_delete_word_backward": "ctrl+w,ctrl+backspace,alt+backspace",
 
-    "input_word_forward": "alt+f,alt+right,ctrl+right",
+"input_select_all": "super+a",
 
-    "input_word_backward": "alt+b,alt+left,ctrl+left",
+"history_previous": "up",
 
-    "input_select_word_forward": "alt+shift+f,alt+shift+right",
+"history_next": "down",
 
-    "input_select_word_backward": "alt+shift+b,alt+shift+left",
+"dialog.select.prev": "up,ctrl+p",
 
-    "input_delete_word_forward": "alt+d,alt+delete,ctrl+delete",
+"dialog.select.next": "down,ctrl+n",
 
-    "input_delete_word_backward": "ctrl+w,ctrl+backspace,alt+backspace",
+"dialog.select.page_up": "pageup",
 
-    "input_select_all": "super+a",
+"dialog.select.page_down": "pagedown",
 
-    "history_previous": "up",
+"dialog.select.home": "home",
 
-    "history_next": "down",
+"dialog.select.end": "end",
 
+"dialog.select.submit": "return",
 
-    "dialog.select.prev": "up,ctrl+p",
+"dialog.mcp.toggle": "space",
 
-    "dialog.select.next": "down,ctrl+n",
+"prompt.autocomplete.prev": "up,ctrl+p",
 
-    "dialog.select.page_up": "pageup",
+"prompt.autocomplete.next": "down,ctrl+n",
 
-    "dialog.select.page_down": "pagedown",
+"prompt.autocomplete.hide": "escape",
 
-    "dialog.select.home": "home",
+"prompt.autocomplete.select": "return",
 
-    "dialog.select.end": "end",
+"prompt.autocomplete.complete": "tab",
 
-    "dialog.select.submit": "return",
+"permission.prompt.fullscreen": "ctrl+f",
 
-    "dialog.mcp.toggle": "space",
+"plugins.toggle": "space",
 
-    "prompt.autocomplete.prev": "up,ctrl+p",
+"dialog.plugins.install": "shift+i",
 
-    "prompt.autocomplete.next": "down,ctrl+n",
+"terminal_suspend": "ctrl+z",
 
-    "prompt.autocomplete.hide": "escape",
+"terminal_title_toggle": "none",
 
-    "prompt.autocomplete.select": "return",
+"tips_toggle": "<leader>h",
 
-    "prompt.autocomplete.complete": "tab",
+"plugin_manager": "none",
 
-    "permission.prompt.fullscreen": "ctrl+f",
+"plugin_install": "none",
 
-    "plugins.toggle": "space",
+"which_key_toggle": "ctrl+alt+k",
 
-    "dialog.plugins.install": "shift+i",
+"which_key_layout_toggle": "ctrl+alt+shift+k",
 
+"which_key_pending_toggle": "ctrl+alt+shift+p",
 
-    "terminal_suspend": "ctrl+z",
+"which_key_group_previous": "ctrl+alt+left,ctrl+alt+[",
 
-    "terminal_title_toggle": "none",
+"which_key_group_next": "ctrl+alt+right,ctrl+alt+]",
 
-    "tips_toggle": "<leader>h",
+"which_key_scroll_up": "ctrl+alt+up,ctrl+alt+p",
 
-    "plugin_manager": "none",
+"which_key_scroll_down": "ctrl+alt+down,ctrl+alt+n",
 
-    "plugin_install": "none",
+"which_key_page_up": "ctrl+alt+pageup",
 
+"which_key_page_down": "ctrl+alt+pagedown",
 
-    "which_key_toggle": "ctrl+alt+k",
+"which_key_home": "ctrl+alt+home",
 
-    "which_key_layout_toggle": "ctrl+alt+shift+k",
-
-    "which_key_pending_toggle": "ctrl+alt+shift+p",
-
-    "which_key_group_previous": "ctrl+alt+left,ctrl+alt+[",
-
-    "which_key_group_next": "ctrl+alt+right,ctrl+alt+]",
-
-    "which_key_scroll_up": "ctrl+alt+up,ctrl+alt+p",
-
-    "which_key_scroll_down": "ctrl+alt+down,ctrl+alt+n",
-
-    "which_key_page_up": "ctrl+alt+pageup",
-
-    "which_key_page_down": "ctrl+alt+pagedown",
-
-    "which_key_home": "ctrl+alt+home",
-
-    "which_key_end": "ctrl+alt+end"
-
-  }
+"which_key_end": "ctrl+alt+end"
 
 }
 
-
+}
 ```
 
 Note
@@ -366,9 +416,9 @@ OpenCode uses a `leader` key for many keybinds. This avoids conflicts in your te
 
 By default, `ctrl+x` is the leader key and many actions require you to first press the leader key and then the shortcut. For example, to start a new session you first press `ctrl+x` and then press `n`.
 
-You don’t need to use a leader key for your keybinds but we recommend doing so.
+You donât need to use a leader key for your keybinds but we recommend doing so.
 
-Some navigation keybinds intentionally do not use the leader key by default. For subagent sessions, the defaults are `session_child_first` \= `<leader>down`, `session_child_cycle` \= `right`, `session_child_cycle_reverse` \= `left`, and `session_parent` \= `up`.
+Some navigation keybinds intentionally do not use the leader key by default. For subagent sessions, the defaults are `session_child_first` = `<leader>down`, `session_child_cycle` = `right`, `session_child_cycle_reverse` = `left`, and `session_parent` = `up`.
 
 `leader_timeout` controls how long OpenCode waits for the next key after the leader key. It defaults to `2000` milliseconds.
 
@@ -383,28 +433,25 @@ For advanced cases, use an object with `key`, `event`, `preventDefault`, or `fal
 tui.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/tui.json",
+"$schema": "https://opencode.ai/tui.json",
 
-  "keybinds": {
+"keybinds": {
 
-    "messages_copy": ["<leader>y", "ctrl+shift+c"],
+"messages_copy": ["<leader>y", "ctrl+shift+c"],
 
-    "input_paste": {
+"input_paste": {
 
-      "key": "ctrl+v",
+"key": "ctrl+v",
 
-      "preventDefault": false
-
-    }
-
-  }
+"preventDefault": false
 
 }
 
+}
 
+}
 ```
 
 ---
@@ -416,20 +463,17 @@ You can disable a keybind by adding the key to `tui.json` with a value of `"none
 tui.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/tui.json",
+"$schema": "https://opencode.ai/tui.json",
 
-  "keybinds": {
+"keybinds": {
 
-    "session_compact": "none"
-
-  }
+"session_compact": "none"
 
 }
 
-
+}
 ```
 
 ---
@@ -438,81 +482,78 @@ tui.json
 
 The OpenCode desktop app prompt input supports common Readline/Emacs-style shortcuts for editing text. These are built-in and currently not configurable via `opencode.json`.
 
-| Shortcut | Action                                   |
-| -------- | ---------------------------------------- |
-| ctrl+a   | Move to start of current line            |
-| ctrl+e   | Move to end of current line              |
-| ctrl+b   | Move cursor back one character           |
-| ctrl+f   | Move cursor forward one character        |
-| alt+b    | Move cursor back one word                |
-| alt+f    | Move cursor forward one word             |
-| ctrl+d   | Delete character under cursor            |
-| ctrl+k   | Kill to end of line                      |
-| ctrl+u   | Kill to start of line                    |
-| ctrl+w   | Kill previous word                       |
-| alt+d    | Kill next word                           |
-| ctrl+t   | Transpose characters                     |
-| ctrl+g   | Cancel popovers / abort running response |
+| Shortcut | Action |
+| --- | --- |
+| `ctrl+a` | Move to start of current line |
+| `ctrl+e` | Move to end of current line |
+| `ctrl+b` | Move cursor back one character |
+| `ctrl+f` | Move cursor forward one character |
+| `alt+b` | Move cursor back one word |
+| `alt+f` | Move cursor forward one word |
+| `ctrl+d` | Delete character under cursor |
+| `ctrl+k` | Kill to end of line |
+| `ctrl+u` | Kill to start of line |
+| `ctrl+w` | Kill previous word |
+| `alt+d` | Kill next word |
+| `ctrl+t` | Transpose characters |
+| `ctrl+g` | Cancel popovers / abort running response |
 
 ---
 
 ## [Shift+Enter](#shiftenter)
 
-Some terminals don’t send modifier keys with Enter by default. You may need to configure your terminal to send `Shift+Enter` as an escape sequence.
+Some terminals donât send modifier keys with Enter by default. You may need to configure your terminal to send `Shift+Enter` as an escape sequence.
 
 ### [Windows Terminal](#windows-terminal)
 
 Open your `settings.json` at:
 
 ```
-
 %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
-
-
 ```
 
 Add this to the root-level `actions` array:
 
 ```
-
 "actions": [
 
-  {
+{
 
-    "command": {
+"command": {
 
-      "action": "sendInput",
+"action": "sendInput",
 
-      "input": "\u001b[13;2u"
+"input": "\u001b[13;2u"
 
-    },
+},
 
-    "id": "User.sendInput.ShiftEnterCustom"
+"id": "User.sendInput.ShiftEnterCustom"
 
-  }
+}
 
 ]
-
-
 ```
 
 Add this to the root-level `keybindings` array:
 
 ```
-
 "keybindings": [
 
-  {
+{
 
-    "keys": "shift+enter",
+"keys": "shift+enter",
 
-    "id": "User.sendInput.ShiftEnterCustom"
+"id": "User.sendInput.ShiftEnterCustom"
 
-  }
+}
 
 ]
-
-
 ```
 
 Save the file and restart Windows Terminal or open a new tab.
+
+[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/keybinds.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+© [Anomaly](https://anoma.ly)
+
+Last updated: May 13, 2026

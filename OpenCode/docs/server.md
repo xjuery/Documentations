@@ -1,15 +1,111 @@
-Title: Server
+[Skip to content](#_top)
 
-URL Source: https://opencode.ai/docs/server
+[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
 
-Markdown Content:
----
-title: Server
-description: Interact with opencode server over HTTP.
-image: https://social-cards.sst.dev/opencode-docs/U2VydmVy.png?desc=Interact%20with%20opencode%20server%20over%20HTTP.
----
+[app.header.home](/)[app.header.docs](../docs.md)
 
-[Skip to content](#%5Ftop) 
+Search  `CtrlK`
+
+Cancel
+
+* [Intro](../docs.md)
+* [Config](config.md)
+* [Providers](providers.md)
+* [Network](network.md)
+* [Enterprise](enterprise.md)
+* [Troubleshooting](troubleshooting.md)
+* [Windows](windows-wsl.md)
+* Usage
+
+  + [Go](go.md)
+  + [TUI](tui.md)
+  + [CLI](cli.md)
+  + [Web](web.md)
+  + [IDE](ide.md)
+  + [Zen](zen.md)
+  + [Share](share.md)
+  + [GitHub](github.md)
+  + [GitLab](gitlab.md)
+* Configure
+
+  + [Tools](tools.md)
+  + [Rules](rules.md)
+  + [Agents](agents.md)
+  + [Models](models.md)
+  + [Themes](themes.md)
+  + [Keybinds](keybinds.md)
+  + [Commands](commands.md)
+  + [Formatters](formatters.md)
+  + [Permissions](permissions.md)
+  + [LSP Servers](lsp.md)
+  + [MCP servers](mcp-servers.md)
+  + [ACP Support](acp.md)
+  + [Agent Skills](skills.md)
+  + [Custom Tools](custom-tools.md)
+* Develop
+
+  + [SDK](sdk.md)
+  + [Server](server.md)
+  + [Plugins](plugins.md)
+  + [Ecosystem](ecosystem.md)
+
+[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
+
+  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+On this page
+
+* [Overview](#_top)
+  + [Usage](#usage)
+  + [Authentication](#authentication)
+  + [How it works](#how-it-works)
+* [Spec](#spec)
+* [APIs](#apis)
+  + [Global](#global)
+  + [Project](#project)
+  + [Path & VCS](#path--vcs)
+  + [Instance](#instance)
+  + [Config](#config)
+  + [Provider](#provider)
+  + [Sessions](#sessions)
+  + [Messages](#messages)
+  + [Commands](#commands)
+  + [Files](#files)
+  + [Tools (Experimental)](#tools-experimental)
+  + [LSP, Formatters & MCP](#lsp-formatters--mcp)
+  + [Agents](#agents)
+  + [Logging](#logging)
+  + [TUI](#tui)
+  + [Auth](#auth)
+  + [Events](#events)
+  + [Docs](#docs)
+
+## On this page
+
+* [Overview](#_top)
+  + [Usage](#usage)
+  + [Authentication](#authentication)
+  + [How it works](#how-it-works)
+* [Spec](#spec)
+* [APIs](#apis)
+  + [Global](#global)
+  + [Project](#project)
+  + [Path & VCS](#path--vcs)
+  + [Instance](#instance)
+  + [Config](#config)
+  + [Provider](#provider)
+  + [Sessions](#sessions)
+  + [Messages](#messages)
+  + [Commands](#commands)
+  + [Files](#files)
+  + [Tools (Experimental)](#tools-experimental)
+  + [LSP, Formatters & MCP](#lsp-formatters--mcp)
+  + [Agents](#agents)
+  + [Logging](#logging)
+  + [TUI](#tui)
+  + [Auth](#auth)
+  + [Events](#events)
+  + [Docs](#docs)
 
 # Server
 
@@ -24,31 +120,25 @@ The `opencode serve` command runs a headless HTTP server that exposes an OpenAPI
 Terminal window
 
 ```
-
 opencode serve [--port <number>] [--hostname <string>] [--cors <origin>]
-
-
 ```
 
 #### [Options](#options)
 
-| Flag           | Description                         | Default        |
-| -------------- | ----------------------------------- | -------------- |
-| \--port        | Port to listen on                   | 4096           |
-| \--hostname    | Hostname to listen on               | 127.0.0.1      |
-| \--mdns        | Enable mDNS discovery               | false          |
-| \--mdns-domain | Custom domain name for mDNS service | opencode.local |
-| \--cors        | Additional browser origins to allow | \[\]           |
+| Flag | Description | Default |
+| --- | --- | --- |
+| `--port` | Port to listen on | `4096` |
+| `--hostname` | Hostname to listen on | `127.0.0.1` |
+| `--mdns` | Enable mDNS discovery | `false` |
+| `--mdns-domain` | Custom domain name for mDNS service | `opencode.local` |
+| `--cors` | Additional browser origins to allow | `[]` |
 
 `--cors` can be passed multiple times:
 
 Terminal window
 
 ```
-
 opencode serve --cors http://localhost:5173 --cors https://app.example.com
-
-
 ```
 
 ---
@@ -60,17 +150,16 @@ Set `OPENCODE_SERVER_PASSWORD` to protect the server with HTTP basic auth. The u
 Terminal window
 
 ```
-
 OPENCODE_SERVER_PASSWORD=your-password opencode serve
-
-
 ```
 
 ---
 
 ### [How it works](#how-it-works)
 
-When you run `opencode` it starts a TUI and a server. Where the TUI is the client that talks to the server. The server exposes an OpenAPI 3.1 spec endpoint. This endpoint is also used to generate an [SDK](sdk.md).
+When you run `opencode` it starts a TUI and a server. Where the TUI is the
+client that talks to the server. The server exposes an OpenAPI 3.1 spec
+endpoint. This endpoint is also used to generate an [SDK](sdk.md).
 
 Tip
 
@@ -78,7 +167,8 @@ Use the opencode server to interact with opencode programmatically.
 
 This architecture lets opencode support multiple clients and allows you to interact with opencode programmatically.
 
-You can run `opencode serve` to start a standalone server. If you have the opencode TUI running, `opencode serve` will start a new server.
+You can run `opencode serve` to start a standalone server. If you have the
+opencode TUI running, `opencode serve` will start a new server.
 
 ---
 
@@ -86,7 +176,7 @@ You can run `opencode serve` to start a standalone server. If you have the openc
 
 When you start the TUI it randomly assigns a port and hostname. You can instead pass in the `--hostname` and `--port` [flags](cli.md). Then use this to connect to its server.
 
-The [/tui](#tui) endpoint can be used to drive the TUI through the server. For example, you can prefill or run a prompt. This setup is used by the OpenCode [IDE](ide.md) plugins.
+The [`/tui`](#tui) endpoint can be used to drive the TUI through the server. For example, you can prefill or run a prompt. This setup is used by the OpenCode [IDE](ide.md) plugins.
 
 ---
 
@@ -95,10 +185,7 @@ The [/tui](#tui) endpoint can be used to drive the TUI through the server. For e
 The server publishes an OpenAPI 3.1 spec that can be viewed at:
 
 ```
-
 http://<hostname>:<port>/doc
-
-
 ```
 
 For example, `http://localhost:4096/doc`. Use the spec to generate clients or inspect request and response types. Or view it in a Swagger explorer.
@@ -113,199 +200,205 @@ The opencode server exposes the following APIs.
 
 ### [Global](#global)
 
-| Method | Path           | Description                    | Response                           |
-| ------ | -------------- | ------------------------------ | ---------------------------------- |
-| GET    | /global/health | Get server health and version  | { healthy: true, version: string } |
-| GET    | /global/event  | Get global events (SSE stream) | Event stream                       |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/global/health` | Get server health and version | `{ healthy: true, version: string }` |
+| `GET` | `/global/event` | Get global events (SSE stream) | Event stream |
 
 ---
 
 ### [Project](#project)
 
-| Method | Path             | Description             | Response                                                                                           |
-| ------ | ---------------- | ----------------------- | -------------------------------------------------------------------------------------------------- |
-| GET    | /project         | List all projects       | [Project\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
-| GET    | /project/current | Get the current project | [Project](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)     |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/project` | List all projects | [`Project[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/project/current` | Get the current project | [`Project`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
 
 ---
 
 ### [Path & VCS](#path--vcs)
 
-| Method | Path  | Description                          | Response                                                                                       |
-| ------ | ----- | ------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| GET    | /path | Get the current path                 | [Path](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)    |
-| GET    | /vcs  | Get VCS info for the current project | [VcsInfo](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/path` | Get the current path | [`Path`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/vcs` | Get VCS info for the current project | [`VcsInfo`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
 
 ---
 
 ### [Instance](#instance)
 
-| Method | Path              | Description                  | Response |
-| ------ | ----------------- | ---------------------------- | -------- |
-| POST   | /instance/dispose | Dispose the current instance | boolean  |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `POST` | `/instance/dispose` | Dispose the current instance | `boolean` |
 
 ---
 
 ### [Config](#config)
 
-| Method | Path              | Description                       | Response                                                                                                                                                 |
-| ------ | ----------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | /config           | Get config info                   | [Config](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                                                            |
-| PATCH  | /config           | Update config                     | [Config](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                                                            |
-| GET    | /config/providers | List providers and default models | { providers: [Provider\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts), default: { \[key: string\]: string } } |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/config` | Get config info | [`Config`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `PATCH` | `/config` | Update config | [`Config`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/config/providers` | List providers and default models | `{ providers:` [Provider[]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`, default: { [key: string]: string } }` |
 
 ---
 
 ### [Provider](#provider)
 
-| Method | Path                           | Description                          | Response                                                                                                                                            |
-| ------ | ------------------------------ | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | /provider                      | List all providers                   | { all: [Provider\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts), default: {...}, connected: string\[\] } |
-| GET    | /provider/auth                 | Get provider authentication methods  | { \[providerID: string\]: [ProviderAuthMethod\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) }           |
-| POST   | /provider/{id}/oauth/authorize | Authorize a provider using OAuth     | [ProviderAuthAuthorization](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                                    |
-| POST   | /provider/{id}/oauth/callback  | Handle OAuth callback for a provider | boolean                                                                                                                                             |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/provider` | List all providers | `{ all:` [Provider[]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`, default: {...}, connected: string[] }` |
+| `GET` | `/provider/auth` | Get provider authentication methods | `{ [providerID: string]:` [ProviderAuthMethod[]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) `}` |
+| `POST` | `/provider/{id}/oauth/authorize` | Authorize a provider using OAuth | [`ProviderAuthAuthorization`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `POST` | `/provider/{id}/oauth/callback` | Handle OAuth callback for a provider | `boolean` |
 
 ---
 
 ### [Sessions](#sessions)
 
-| Method | Path                                   | Description                           | Notes                                                                                                                                   |
-| ------ | -------------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | /session                               | List all sessions                     | Returns [Session\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                              |
-| POST   | /session                               | Create a new session                  | body: { parentID?, title? }, returns [Session](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)     |
-| GET    | /session/status                        | Get session status for all sessions   | Returns { \[sessionID: string\]: [SessionStatus](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) } |
-| GET    | /session/:id                           | Get session details                   | Returns [Session](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                                  |
-| DELETE | /session/:id                           | Delete a session and all its data     | Returns boolean                                                                                                                         |
-| PATCH  | /session/:id                           | Update session properties             | body: { title? }, returns [Session](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                |
-| GET    | /session/:id/children                  | Get a session’s child sessions        | Returns [Session\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                              |
-| GET    | /session/:id/todo                      | Get the todo list for a session       | Returns [Todo\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                                 |
-| POST   | /session/:id/init                      | Analyze app and create AGENTS.md      | body: { messageID, providerID, modelID }, returns boolean                                                                               |
-| POST   | /session/:id/fork                      | Fork an existing session at a message | body: { messageID? }, returns [Session](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)            |
-| POST   | /session/:id/abort                     | Abort a running session               | Returns boolean                                                                                                                         |
-| POST   | /session/:id/share                     | Share a session                       | Returns [Session](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                                  |
-| DELETE | /session/:id/share                     | Unshare a session                     | Returns [Session](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                                  |
-| GET    | /session/:id/diff                      | Get the diff for this session         | query: messageID?, returns [FileDiff\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)          |
-| POST   | /session/:id/summarize                 | Summarize the session                 | body: { providerID, modelID }, returns boolean                                                                                          |
-| POST   | /session/:id/revert                    | Revert a message                      | body: { messageID, partID? }, returns boolean                                                                                           |
-| POST   | /session/:id/unrevert                  | Restore all reverted messages         | Returns boolean                                                                                                                         |
-| POST   | /session/:id/permissions/:permissionID | Respond to a permission request       | body: { response, remember? }, returns boolean                                                                                          |
+| Method | Path | Description | Notes |
+| --- | --- | --- | --- |
+| `GET` | `/session` | List all sessions | Returns [`Session[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `POST` | `/session` | Create a new session | body: `{ parentID?, title? }`, returns [`Session`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/session/status` | Get session status for all sessions | Returns `{ [sessionID: string]:` [SessionStatus](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) `}` |
+| `GET` | `/session/:id` | Get session details | Returns [`Session`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `DELETE` | `/session/:id` | Delete a session and all its data | Returns `boolean` |
+| `PATCH` | `/session/:id` | Update session properties | body: `{ title? }`, returns [`Session`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/session/:id/children` | Get a sessionâs child sessions | Returns [`Session[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/session/:id/todo` | Get the todo list for a session | Returns [`Todo[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `POST` | `/session/:id/init` | Analyze app and create `AGENTS.md` | body: `{ messageID, providerID, modelID }`, returns `boolean` |
+| `POST` | `/session/:id/fork` | Fork an existing session at a message | body: `{ messageID? }`, returns [`Session`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `POST` | `/session/:id/abort` | Abort a running session | Returns `boolean` |
+| `POST` | `/session/:id/share` | Share a session | Returns [`Session`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `DELETE` | `/session/:id/share` | Unshare a session | Returns [`Session`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/session/:id/diff` | Get the diff for this session | query: `messageID?`, returns [`FileDiff[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `POST` | `/session/:id/summarize` | Summarize the session | body: `{ providerID, modelID }`, returns `boolean` |
+| `POST` | `/session/:id/revert` | Revert a message | body: `{ messageID, partID? }`, returns `boolean` |
+| `POST` | `/session/:id/unrevert` | Restore all reverted messages | Returns `boolean` |
+| `POST` | `/session/:id/permissions/:permissionID` | Respond to a permission request | body: `{ response, remember? }`, returns `boolean` |
 
 ---
 
 ### [Messages](#messages)
 
-| Method | Path                            | Description                             | Notes                                                                                                                                                                                                                                                                                           |
-| ------ | ------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | /session/:id/message            | List messages in a session              | query: limit?, returns { info: [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts), parts: [Part\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)}\[\]                                                      |
-| POST   | /session/:id/message            | Send a message and wait for response    | body: { messageID?, model?, agent?, noReply?, system?, tools?, parts }, returns { info: [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts), parts: [Part\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)} |
-| GET    | /session/:id/message/:messageID | Get message details                     | Returns { info: [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts), parts: [Part\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)}                                                                         |
-| POST   | /session/:id/prompt\_async      | Send a message asynchronously (no wait) | body: same as /session/:id/message, returns 204 No Content                                                                                                                                                                                                                                      |
-| POST   | /session/:id/command            | Execute a slash command                 | body: { messageID?, agent?, model?, command, arguments }, returns { info: [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts), parts: [Part\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)}               |
-| POST   | /session/:id/shell              | Run a shell command                     | body: { agent, model?, command }, returns { info: [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts), parts: [Part\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)}                                       |
+| Method | Path | Description | Notes |
+| --- | --- | --- | --- |
+| `GET` | `/session/:id/message` | List messages in a session | query: `limit?`, returns `{ info:` [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`, parts:` [Part[]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`}[]` |
+| `POST` | `/session/:id/message` | Send a message and wait for response | body: `{ messageID?, model?, agent?, noReply?, system?, tools?, parts }`, returns `{ info:` [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`, parts:` [Part[]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`}` |
+| `GET` | `/session/:id/message/:messageID` | Get message details | Returns `{ info:` [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`, parts:` [Part[]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`}` |
+| `POST` | `/session/:id/prompt_async` | Send a message asynchronously (no wait) | body: same as `/session/:id/message`, returns `204 No Content` |
+| `POST` | `/session/:id/command` | Execute a slash command | body: `{ messageID?, agent?, model?, command, arguments }`, returns `{ info:` [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`, parts:` [Part[]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`}` |
+| `POST` | `/session/:id/shell` | Run a shell command | body: `{ agent, model?, command }`, returns `{ info:` [Message](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`, parts:` [Part[]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)`}` |
 
 ---
 
 ### [Commands](#commands)
 
-| Method | Path     | Description       | Response                                                                                           |
-| ------ | -------- | ----------------- | -------------------------------------------------------------------------------------------------- |
-| GET    | /command | List all commands | [Command\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/command` | List all commands | [`Command[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
 
 ---
 
 ### [Files](#files)
 
-| Method | Path                   | Description                        | Response                                                                                            |
-| ------ | ---------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| GET    | /find?pattern=<pat>    | Search for text in files           | Array of match objects with path, lines, line\_number, absolute\_offset, submatches                 |
-| GET    | /find/file?query=<q>   | Find files and directories by name | string\[\] (paths)                                                                                  |
-| GET    | /find/symbol?query=<q> | Find workspace symbols             | [Symbol\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)   |
-| GET    | /file?path=<path>      | List files and directories         | [FileNode\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
-| GET    | /file/content?path=<p> | Read a file                        | [FileContent](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)  |
-| GET    | /file/status           | Get status for tracked files       | [File\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)     |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/find?pattern=<pat>` | Search for text in files | Array of match objects with `path`, `lines`, `line_number`, `absolute_offset`, `submatches` |
+| `GET` | `/find/file?query=<q>` | Find files and directories by name | `string[]` (paths) |
+| `GET` | `/find/symbol?query=<q>` | Find workspace symbols | [`Symbol[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/file?path=<path>` | List files and directories | [`FileNode[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/file/content?path=<p>` | Read a file | [`FileContent`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/file/status` | Get status for tracked files | [`File[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
 
-#### [/find/file query parameters](#findfile-query-parameters)
+#### [`/find/file` query parameters](#findfile-query-parameters)
 
-* `query` (required) — search string (fuzzy match)
-* `type` (optional) — limit results to `"file"` or `"directory"`
-* `directory` (optional) — override the project root for the search
-* `limit` (optional) — max results (1–200)
-* `dirs` (optional) — legacy flag (`"false"` returns only files)
+* `query` (required) â search string (fuzzy match)
+* `type` (optional) â limit results to `"file"` or `"directory"`
+* `directory` (optional) â override the project root for the search
+* `limit` (optional) â max results (1â200)
+* `dirs` (optional) â legacy flag (`"false"` returns only files)
 
 ---
 
 ### [Tools (Experimental)](#tools-experimental)
 
-| Method | Path                                      | Description                              | Response                                                                                        |
-| ------ | ----------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| GET    | /experimental/tool/ids                    | List all tool IDs                        | [ToolIDs](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)  |
-| GET    | /experimental/tool?provider=<p>&model=<m> | List tools with JSON schemas for a model | [ToolList](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/experimental/tool/ids` | List all tool IDs | [`ToolIDs`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/experimental/tool?provider=<p>&model=<m>` | List tools with JSON schemas for a model | [`ToolList`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
 
 ---
 
 ### [LSP, Formatters & MCP](#lsp-formatters--mcp)
 
-| Method | Path       | Description                | Response                                                                                                               |
-| ------ | ---------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| GET    | /lsp       | Get LSP server status      | [LSPStatus\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)                   |
-| GET    | /formatter | Get formatter status       | [FormatterStatus\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts)             |
-| GET    | /mcp       | Get MCP server status      | { \[name: string\]: [MCPStatus](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) } |
-| POST   | /mcp       | Add MCP server dynamically | body: { name, config }, returns MCP status object                                                                      |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/lsp` | Get LSP server status | [`LSPStatus[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/formatter` | Get formatter status | [`FormatterStatus[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| `GET` | `/mcp` | Get MCP server status | `{ [name: string]:` [MCPStatus](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) `}` |
+| `POST` | `/mcp` | Add MCP server dynamically | body: `{ name, config }`, returns MCP status object |
 
 ---
 
 ### [Agents](#agents)
 
-| Method | Path   | Description               | Response                                                                                         |
-| ------ | ------ | ------------------------- | ------------------------------------------------------------------------------------------------ |
-| GET    | /agent | List all available agents | [Agent\[\]](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/agent` | List all available agents | [`Agent[]`](https://github.com/anomalyco/opencode/blob/dev/packages/sdk/js/src/gen/types.gen.ts) |
 
 ---
 
 ### [Logging](#logging)
 
-| Method | Path | Description                                                | Response |
-| ------ | ---- | ---------------------------------------------------------- | -------- |
-| POST   | /log | Write log entry. Body: { service, level, message, extra? } | boolean  |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `POST` | `/log` | Write log entry. Body: `{ service, level, message, extra? }` | `boolean` |
 
 ---
 
 ### [TUI](#tui)
 
-| Method | Path                  | Description                               | Response               |
-| ------ | --------------------- | ----------------------------------------- | ---------------------- |
-| POST   | /tui/append-prompt    | Append text to the prompt                 | boolean                |
-| POST   | /tui/open-help        | Open the help dialog                      | boolean                |
-| POST   | /tui/open-sessions    | Open the session selector                 | boolean                |
-| POST   | /tui/open-themes      | Open the theme selector                   | boolean                |
-| POST   | /tui/open-models      | Open the model selector                   | boolean                |
-| POST   | /tui/submit-prompt    | Submit the current prompt                 | boolean                |
-| POST   | /tui/clear-prompt     | Clear the prompt                          | boolean                |
-| POST   | /tui/execute-command  | Execute a command ({ command })           | boolean                |
-| POST   | /tui/show-toast       | Show toast ({ title?, message, variant }) | boolean                |
-| GET    | /tui/control/next     | Wait for the next control request         | Control request object |
-| POST   | /tui/control/response | Respond to a control request ({ body })   | boolean                |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `POST` | `/tui/append-prompt` | Append text to the prompt | `boolean` |
+| `POST` | `/tui/open-help` | Open the help dialog | `boolean` |
+| `POST` | `/tui/open-sessions` | Open the session selector | `boolean` |
+| `POST` | `/tui/open-themes` | Open the theme selector | `boolean` |
+| `POST` | `/tui/open-models` | Open the model selector | `boolean` |
+| `POST` | `/tui/submit-prompt` | Submit the current prompt | `boolean` |
+| `POST` | `/tui/clear-prompt` | Clear the prompt | `boolean` |
+| `POST` | `/tui/execute-command` | Execute a command (`{ command }`) | `boolean` |
+| `POST` | `/tui/show-toast` | Show toast (`{ title?, message, variant }`) | `boolean` |
+| `GET` | `/tui/control/next` | Wait for the next control request | Control request object |
+| `POST` | `/tui/control/response` | Respond to a control request (`{ body }`) | `boolean` |
 
 ---
 
 ### [Auth](#auth)
 
-| Method | Path      | Description                                                     | Response |
-| ------ | --------- | --------------------------------------------------------------- | -------- |
-| PUT    | /auth/:id | Set authentication credentials. Body must match provider schema | boolean  |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `PUT` | `/auth/:id` | Set authentication credentials. Body must match provider schema | `boolean` |
 
 ---
 
 ### [Events](#events)
 
-| Method | Path   | Description                                                                 | Response                  |
-| ------ | ------ | --------------------------------------------------------------------------- | ------------------------- |
-| GET    | /event | Server-sent events stream. First event is server.connected, then bus events | Server-sent events stream |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/event` | Server-sent events stream. First event is `server.connected`, then bus events | Server-sent events stream |
 
 ---
 
 ### [Docs](#docs)
 
-| Method | Path | Description               | Response                    |
-| ------ | ---- | ------------------------- | --------------------------- |
-| GET    | /doc | OpenAPI 3.1 specification | HTML page with OpenAPI spec |
+| Method | Path | Description | Response |
+| --- | --- | --- | --- |
+| `GET` | `/doc` | OpenAPI 3.1 specification | HTML page with OpenAPI spec |
+
+[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/server.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+© [Anomaly](https://anoma.ly)
+
+Last updated: May 13, 2026

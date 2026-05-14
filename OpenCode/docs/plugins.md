@@ -1,21 +1,105 @@
-Title: Plugins
+[Skip to content](#_top)
 
-URL Source: https://opencode.ai/docs/plugins
+[![](/docs/_astro/logo-dark.DOStV66V.svg) ![](/docs/_astro/logo-light.B0yzR0O5.svg)  OpenCode](../docs.md)
 
-Markdown Content:
----
-title: Plugins
-description: Write your own plugins to extend OpenCode.
-image: https://social-cards.sst.dev/opencode-docs/UGx1Z2lucw%3D%3D.png?desc=Write%20your%20own%20plugins%20to%20extend%20OpenCode.
----
+[app.header.home](/)[app.header.docs](../docs.md)
 
-[Skip to content](#%5Ftop) 
+Search  `CtrlK`
+
+Cancel
+
+* [Intro](../docs.md)
+* [Config](config.md)
+* [Providers](providers.md)
+* [Network](network.md)
+* [Enterprise](enterprise.md)
+* [Troubleshooting](troubleshooting.md)
+* [Windows](windows-wsl.md)
+* Usage
+
+  + [Go](go.md)
+  + [TUI](tui.md)
+  + [CLI](cli.md)
+  + [Web](web.md)
+  + [IDE](ide.md)
+  + [Zen](zen.md)
+  + [Share](share.md)
+  + [GitHub](github.md)
+  + [GitLab](gitlab.md)
+* Configure
+
+  + [Tools](tools.md)
+  + [Rules](rules.md)
+  + [Agents](agents.md)
+  + [Models](models.md)
+  + [Themes](themes.md)
+  + [Keybinds](keybinds.md)
+  + [Commands](commands.md)
+  + [Formatters](formatters.md)
+  + [Permissions](permissions.md)
+  + [LSP Servers](lsp.md)
+  + [MCP servers](mcp-servers.md)
+  + [ACP Support](acp.md)
+  + [Agent Skills](skills.md)
+  + [Custom Tools](custom-tools.md)
+* Develop
+
+  + [SDK](sdk.md)
+  + [Server](server.md)
+  + [Plugins](plugins.md)
+  + [Ecosystem](ecosystem.md)
+
+[GitHub](https://github.com/anomalyco/opencode)[Discord](https://opencode.ai/discord)
+
+  Select theme   DarkLightAuto      Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+On this page
+
+* [Overview](#_top)
+* [Use a plugin](#use-a-plugin)
+  + [From local files](#from-local-files)
+  + [From npm](#from-npm)
+  + [How plugins are installed](#how-plugins-are-installed)
+  + [Load order](#load-order)
+* [Create a plugin](#create-a-plugin)
+  + [Dependencies](#dependencies)
+  + [Basic structure](#basic-structure)
+  + [TypeScript support](#typescript-support)
+  + [Events](#events)
+* [Examples](#examples)
+  + [Send notifications](#send-notifications)
+  + [.env protection](#env-protection)
+  + [Inject environment variables](#inject-environment-variables)
+  + [Custom tools](#custom-tools)
+  + [Logging](#logging)
+  + [Compaction hooks](#compaction-hooks)
+
+## On this page
+
+* [Overview](#_top)
+* [Use a plugin](#use-a-plugin)
+  + [From local files](#from-local-files)
+  + [From npm](#from-npm)
+  + [How plugins are installed](#how-plugins-are-installed)
+  + [Load order](#load-order)
+* [Create a plugin](#create-a-plugin)
+  + [Dependencies](#dependencies)
+  + [Basic structure](#basic-structure)
+  + [TypeScript support](#typescript-support)
+  + [Events](#events)
+* [Examples](#examples)
+  + [Send notifications](#send-notifications)
+  + [.env protection](#env-protection)
+  + [Inject environment variables](#inject-environment-variables)
+  + [Custom tools](#custom-tools)
+  + [Logging](#logging)
+  + [Compaction hooks](#compaction-hooks)
 
 # Plugins
 
 Write your own plugins to extend OpenCode.
 
-Plugins allow you to extend OpenCode by hooking into various events and customizing behavior. You can create plugins to add new features, integrate with external services, or modify OpenCode’s default behavior.
+Plugins allow you to extend OpenCode by hooking into various events and customizing behavior. You can create plugins to add new features, integrate with external services, or modify OpenCodeâs default behavior.
 
 For examples, check out the [plugins](ecosystem.md) created by the community.
 
@@ -31,8 +115,8 @@ There are two ways to load plugins.
 
 Place JavaScript or TypeScript files in the plugin directory.
 
-* `.opencode/plugins/` \- Project-level plugins
-* `~/.config/opencode/plugins/` \- Global plugins
+* `.opencode/plugins/` - Project-level plugins
+* `~/.config/opencode/plugins/` - Global plugins
 
 Files in these directories are automatically loaded at startup.
 
@@ -45,16 +129,13 @@ Specify npm packages in your config file.
 opencode.json
 
 ```
-
 {
 
-  "$schema": "https://opencode.ai/config.json",
+"$schema": "https://opencode.ai/config.json",
 
-  "plugin": ["opencode-helicone-session", "opencode-wakatime", "@my-org/custom-plugin"]
+"plugin": ["opencode-helicone-session", "opencode-wakatime", "@my-org/custom-plugin"]
 
 }
-
-
 ```
 
 Both regular and scoped npm packages are supported.
@@ -86,7 +167,8 @@ Duplicate npm packages with the same name and version are loaded once. However, 
 
 ## [Create a plugin](#create-a-plugin)
 
-A plugin is a **JavaScript/TypeScript module** that exports one or more plugin functions. Each function receives a context object and returns a hooks object.
+A plugin is a **JavaScript/TypeScript module** that exports one or more plugin
+functions. Each function receives a context object and returns a hooks object.
 
 ---
 
@@ -97,18 +179,15 @@ Local plugins and custom tools can use external npm packages. Add a `package.jso
 .opencode/package.json
 
 ```
-
 {
 
-  "dependencies": {
+"dependencies": {
 
-    "shescape": "^2.1.0"
-
-  }
+"shescape": "^2.1.0"
 
 }
 
-
+}
 ```
 
 OpenCode runs `bun install` at startup to install these. Your plugins and tools can then import them.
@@ -116,29 +195,25 @@ OpenCode runs `bun install` at startup to install these. Your plugins and tools 
 .opencode/plugins/my-plugin.ts
 
 ```
-
 import { escape } from "shescape"
-
 
 export const MyPlugin = async (ctx) => {
 
-  return {
+return {
 
-    "tool.execute.before": async (input, output) => {
+"tool.execute.before": async (input, output) => {
 
-      if (input.tool === "bash") {
+if (input.tool === "bash") {
 
-        output.args.command = escape(output.args.command)
-
-      }
-
-    },
-
-  }
+output.args.command = escape(output.args.command)
 
 }
 
+},
 
+}
+
+}
 ```
 
 ---
@@ -148,21 +223,17 @@ export const MyPlugin = async (ctx) => {
 .opencode/plugins/example.js
 
 ```
-
 export const MyPlugin = async ({ project, client, $, directory, worktree }) => {
 
-  console.log("Plugin initialized!")
+console.log("Plugin initialized!")
 
+return {
 
-  return {
-
-    // Hook implementations go here
-
-  }
+// Hook implementations go here
 
 }
 
-
+}
 ```
 
 The plugin function receives:
@@ -171,7 +242,7 @@ The plugin function receives:
 * `directory`: The current working directory.
 * `worktree`: The git worktree path.
 * `client`: An opencode SDK client for interacting with the AI.
-* `$`: Bun’s [shell API](https://bun.com/docs/runtime/shell) for executing commands.
+* `$`: Bunâs [shell API](https://bun.com/docs/runtime/shell) for executing commands.
 
 ---
 
@@ -182,21 +253,17 @@ For TypeScript plugins, you can import types from the plugin package:
 my-plugin.ts
 
 ```
-
 import type { Plugin } from "@opencode-ai/plugin"
-
 
 export const MyPlugin: Plugin = async ({ project, client, $, directory, worktree }) => {
 
-  return {
+return {
 
-    // Type-safe hook implementations
-
-  }
+// Type-safe hook implementations
 
 }
 
-
+}
 ```
 
 ---
@@ -284,35 +351,32 @@ Send notifications when certain events occur:
 .opencode/plugins/notification.js
 
 ```
-
 export const NotificationPlugin = async ({ project, client, $, directory, worktree }) => {
 
-  return {
+return {
 
-    event: async ({ event }) => {
+event: async ({ event }) => {
 
-      // Send notification on session completion
+// Send notification on session completion
 
-      if (event.type === "session.idle") {
+if (event.type === "session.idle") {
 
-        await $`osascript -e 'display notification "Session completed!" with title "opencode"'`
-
-      }
-
-    },
-
-  }
+await $`osascript -e 'display notification "Session completed!" with title "opencode"'`
 
 }
 
+},
 
+}
+
+}
 ```
 
 We are using `osascript` to run AppleScript on macOS. Here we are using it to send notifications.
 
 Note
 
-If you’re using the OpenCode desktop app, it can send system notifications automatically when a response is ready or when a session errors.
+If youâre using the OpenCode desktop app, it can send system notifications automatically when a response is ready or when a session errors.
 
 ---
 
@@ -323,26 +387,23 @@ Prevent opencode from reading `.env` files:
 .opencode/plugins/env-protection.js
 
 ```
-
 export const EnvProtection = async ({ project, client, $, directory, worktree }) => {
 
-  return {
+return {
 
-    "tool.execute.before": async (input, output) => {
+"tool.execute.before": async (input, output) => {
 
-      if (input.tool === "read" && output.args.filePath.includes(".env")) {
+if (input.tool === "read" && output.args.filePath.includes(".env")) {
 
-        throw new Error("Do not read .env files")
-
-      }
-
-    },
-
-  }
+throw new Error("Do not read .env files")
 
 }
 
+},
 
+}
+
+}
 ```
 
 ---
@@ -354,24 +415,21 @@ Inject environment variables into all shell execution (AI tools and user termina
 .opencode/plugins/inject-env.js
 
 ```
-
 export const InjectEnvPlugin = async () => {
 
-  return {
+return {
 
-    "shell.env": async (input, output) => {
+"shell.env": async (input, output) => {
 
-      output.env.MY_API_KEY = "secret"
+output.env.MY_API_KEY = "secret"
 
-      output.env.PROJECT_ROOT = input.cwd
+output.env.PROJECT_ROOT = input.cwd
 
-    },
-
-  }
+},
 
 }
 
-
+}
 ```
 
 ---
@@ -383,49 +441,45 @@ Plugins can also add custom tools to opencode:
 .opencode/plugins/custom-tools.ts
 
 ```
-
 import { type Plugin, tool } from "@opencode-ai/plugin"
-
 
 export const CustomToolsPlugin: Plugin = async (ctx) => {
 
-  return {
+return {
 
-    tool: {
+tool: {
 
-      mytool: tool({
+mytool: tool({
 
-        description: "This is a custom tool",
+description: "This is a custom tool",
 
-        args: {
+args: {
 
-          foo: tool.schema.string(),
+foo: tool.schema.string(),
 
-        },
+},
 
-        async execute(args, context) {
+async execute(args, context) {
 
-          const { directory, worktree } = context
+const { directory, worktree } = context
 
-          return `Hello ${args.foo} from ${directory} (worktree: ${worktree})`
+return `Hello ${args.foo} from ${directory} (worktree: ${worktree})`
 
-        },
+},
 
-      }),
+}),
 
-    },
-
-  }
+},
 
 }
 
-
+}
 ```
 
 The `tool` helper creates a custom tool that opencode can call. It takes a Zod schema function and returns a tool definition with:
 
 * `description`: What the tool does
-* `args`: Zod schema for the tool’s arguments
+* `args`: Zod schema for the toolâs arguments
 * `execute`: Function that runs when the tool is called
 
 Your custom tools will be available to opencode alongside built-in tools.
@@ -443,28 +497,25 @@ Use `client.app.log()` instead of `console.log` for structured logging:
 .opencode/plugins/my-plugin.ts
 
 ```
-
 export const MyPlugin = async ({ client }) => {
 
-  await client.app.log({
+await client.app.log({
 
-    body: {
+body: {
 
-      service: "my-plugin",
+service: "my-plugin",
 
-      level: "info",
+level: "info",
 
-      message: "Plugin initialized",
+message: "Plugin initialized",
 
-      extra: { foo: "bar" },
+extra: { foo: "bar" },
 
-    },
+},
 
-  })
+})
 
 }
-
-
 ```
 
 Levels: `debug`, `info`, `warn`, `error`. See [SDK documentation](sdk.md) for details.
@@ -478,22 +529,19 @@ Customize the context included when a session is compacted:
 .opencode/plugins/compaction.ts
 
 ```
-
 import type { Plugin } from "@opencode-ai/plugin"
-
 
 export const CompactionPlugin: Plugin = async (ctx) => {
 
-  return {
+return {
 
-    "experimental.session.compacting": async (input, output) => {
+"experimental.session.compacting": async (input, output) => {
 
-      // Inject additional context into the compaction prompt
+// Inject additional context into the compaction prompt
 
-      output.context.push(`
+output.context.push(`
 
 ## Custom Context
-
 
 Include any state that should persist across compaction:
 
@@ -505,13 +553,11 @@ Include any state that should persist across compaction:
 
 `)
 
-    },
-
-  }
+},
 
 }
 
-
+}
 ```
 
 The `experimental.session.compacting` hook fires before the LLM generates a continuation summary. Use it to inject domain-specific context that the default compaction prompt would miss.
@@ -521,22 +567,19 @@ You can also replace the compaction prompt entirely by setting `output.prompt`:
 .opencode/plugins/custom-compaction.ts
 
 ```
-
 import type { Plugin } from "@opencode-ai/plugin"
-
 
 export const CustomCompactionPlugin: Plugin = async (ctx) => {
 
-  return {
+return {
 
-    "experimental.session.compacting": async (input, output) => {
+"experimental.session.compacting": async (input, output) => {
 
-      // Replace the entire compaction prompt
+// Replace the entire compaction prompt
 
-      output.prompt = `
+output.prompt = `
 
 You are generating a continuation prompt for a multi-agent swarm session.
-
 
 Summarize:
 
@@ -548,18 +591,21 @@ Summarize:
 
 4. The next steps to complete the work
 
-
 Format as a structured prompt that a new agent can use to resume work.
 
 `
 
-    },
-
-  }
+},
 
 }
 
-
+}
 ```
 
 When `output.prompt` is set, it completely replaces the default compaction prompt. The `output.context` array is ignored in this case.
+
+[Edit page](https://github.com/anomalyco/opencode/edit/dev/packages/web/src/content/docs/plugins.mdx)[Found a bug? Open an issue](https://github.com/anomalyco/opencode/issues/new)[Join our Discord community](https://opencode.ai/discord) Select language   EnglishØ§ÙØ¹Ø±Ø¨ÙØ©BosanskiDanskDeutschEspaÃ±olFranÃ§aisItalianoæ¥æ¬èªíêµ­ì´Norsk BokmÃ¥lPolskiPortuguÃªs (Brasil)Ð ÑÑÑÐºÐ¸Ð¹à¹à¸à¸¢TÃ¼rkÃ§eç®ä½ä¸­æç¹é«ä¸­æ
+
+© [Anomaly](https://anoma.ly)
+
+Last updated: May 13, 2026
